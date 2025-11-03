@@ -1,0 +1,16 @@
+.workflow-card {
+  margin: 60px auto;
+  padding: 40px;
+  max-width: 600px;
+  text-align: center;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30px;
+}
+
+button.active {
+  box-shadow: 0 0 10px rgba(63, 81, 181, 0.6);
+}

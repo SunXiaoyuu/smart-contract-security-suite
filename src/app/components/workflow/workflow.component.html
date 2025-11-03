@@ -1,1 +1,11 @@
-<p>workflow works!</p>
+<mat-card class="workflow-card">
+  <h2>智能合约自动化工作流</h2>
+
+  <div class="button-group">
+    <button mat-raised-button color="primary" routerLink="/generation" routerLinkActive="active">合约生成</button>
+    <button mat-raised-button color="accent" routerLink="/detection" routerLinkActive="active">漏洞检测</button>
+    <button mat-raised-button color="warn" routerLink="/repair" routerLinkActive="active">漏洞修复</button>
+  </div>
+
+  <router-outlet></router-outlet>
+</mat-card>
