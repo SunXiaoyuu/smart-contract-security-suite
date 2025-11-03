@@ -1,0 +1,8 @@
+<mat-card>
+  <h2>🧠 智能合约生成模块</h2>
+  <mat-form-field appearance="outline" class="w-full">
+    <textarea matInput placeholder="请输入自然语言需求描述..." [(ngModel)]="description"></textarea>
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="generateContract()">生成合约</button>
+  <pre *ngIf="generatedCode">{{ generatedCode }}</pre>
+</mat-card>

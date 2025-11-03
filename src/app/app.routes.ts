@@ -1,3 +1,7 @@
-import { Routes } from '@angular/router';
-
-export const routes: Routes = [];
+const routes: Routes = [
+  { path: 'generation', component: GenerationComponent },
+  { path: 'detection', component: DetectionComponent },
+  { path: 'repair', component: RepairComponent },
+  { path: 'workflow', component: WorkflowComponent },
+  { path: '', redirectTo: '/workflow', pathMatch: 'full' }
+];
