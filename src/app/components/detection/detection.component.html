@@ -1,1 +1,23 @@
-<p>detection works!</p>
+<mat-card>
+  <h2>🧩 智能合约漏洞检测模块</h2>
+
+  <mat-form-field appearance="outline" class="w-full">
+    <textarea
+      matInput
+      placeholder="粘贴智能合约代码..."
+      [(ngModel)]="code"
+      rows="6">
+    </textarea>
+  </mat-form-field>
+
+  <button mat-raised-button color="accent" (click)="detect()">开始检测</button>
+
+  <div *ngIf="report" style="margin-top: 20px;">
+    <h3>检测结果：</h3>
+    <mat-list>
+      <mat-list-item *ngFor="let v of report.vulnerabilities">
+        <b>{{ v.type }}</b> - 严重等级: {{ v.severity }}
+      </mat-list-item>
+    </mat-list>
+  </div>
+</mat-card>
