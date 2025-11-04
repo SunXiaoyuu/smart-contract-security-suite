@@ -1,1 +1,39 @@
-<p>repair works!</p>
+<mat-card>
+  <h2>🧩 智能合约漏洞修补模块</h2>
+
+  <mat-form-field appearance="outline" class="w-full">
+    <textarea
+      matInput
+      placeholder="粘贴智能合约代码..."
+      [(ngModel)]="code"
+      rows="6">
+    </textarea>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="w-full">
+    <textarea
+      matInput
+      placeholder="粘贴漏洞审计报告..."
+      [(ngModel)]="reports"
+      rows="6">
+    </textarea>
+  </mat-form-field>
+
+  <button mat-raised-button color="accent" (click)="applySuggestion()">开始分析</button>
+  <div *ngIf="patchSuggestions" style="margin-top: 20px;">
+    <h3>修补意见：</h3>
+    <mat-list>
+      <mat-list-item *ngFor="let v of patchSuggestions.suggestion">
+        <b>{{ v.num }}</b> 第{{v.line}}行：{{ v.sug }}
+      </mat-list-item>
+    </mat-list>
+  </div>
+
+  <button mat-raised-button color="accent" (click)="applyPatch()">开始修补</button>
+
+  <div *ngIf="repairedCode" style="margin-top: 20px;">
+    <h3>修补结果：</h3>
+    <pre *ngIf="repairedCode">{{ repairedCode }}</pre>
+  </div>
+  
+</mat-card>
