@@ -1,11 +1,28 @@
 <mat-card class="workflow-card">
-  <h2>智能合约自动化工作流</h2>
-
-  <div class="button-group">
-    <button mat-raised-button color="primary" routerLink="/generation" routerLinkActive="active">合约生成</button>
-    <button mat-raised-button color="accent" routerLink="/detection" routerLinkActive="active">漏洞检测</button>
-    <button mat-raised-button color="warn" routerLink="/repair" routerLinkActive="active">漏洞修复</button>
+  <!-- 🔹 顶部标题栏 -->
+  <div class="card-header">
+    <mat-icon class="logo-icon">smart_toy</mat-icon>
+    <h1>智能合约自动化工作流</h1>
   </div>
 
+  <!-- 🔹 主体按钮区 -->
+  <div class="button-group">
+    <button mat-raised-button color="primary" routerLink="/generation" routerLinkActive="active">
+      <mat-icon>auto_fix_high</mat-icon>
+      合约生成
+    </button>
+
+    <button mat-raised-button color="accent" routerLink="/detection" routerLinkActive="active">
+      <mat-icon>search</mat-icon>
+      漏洞检测
+    </button>
+
+    <button mat-raised-button color="warn" routerLink="/repair" routerLinkActive="active">
+      <mat-icon>build</mat-icon>
+      漏洞修复
+    </button>
+  </div>
+
+  <!-- 🔹 路由显示区 -->
   <router-outlet></router-outlet>
 </mat-card>

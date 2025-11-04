@@ -1,16 +1,95 @@
-.workflow-card {
-  margin: 60px auto;
-  padding: 40px;
-  max-width: 600px;
-  text-align: center;
+/* 🌟 全局字体样式（自动适配屏幕大小） */
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* 全屏高度 */
+  width: 100vw;  /* 全屏宽度 */
+  background: linear-gradient(135deg, #e3f2fd, #f3e5f5); /* 柔和渐变背景 */
+  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
 }
 
+/* 外层卡片整体样式 */
+.workflow-card {
+  margin: 8vh auto;
+  padding: 4vw;
+  max-width: 700px;
+  text-align: center;
+  background: linear-gradient(145deg, #f9fafc, #eef1f5);
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.workflow-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+}
+
+/* 标题字体自动缩放 */
+.workflow-card h2 {
+  font-size: clamp(1.4rem, 2vw + 0.5rem, 2.2rem); /* ✅ 自动调整标题大小 */
+  color: #3f51b5;
+  letter-spacing: 1px;
+  margin-bottom: 2vh;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+/* 按钮组布局 */
 .button-group {
   display: flex;
-  justify-content: space-around;
-  margin-top: 30px;
+  justify-content: center;
+  gap: 2vw;
+  flex-wrap: wrap;
+  margin-top: 3vh;
 }
 
+/* 按钮字体和布局 */
+button[mat-raised-button] {
+  min-width: 140px;
+  height: 48px;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: clamp(0.9rem, 1vw + 0.2rem, 1.1rem); /* ✅ 字体自动适应 */
+  transition: all 0.25s ease;
+}
+
+/* 悬停效果 */
+button[color="primary"]:hover {
+  background-color: #3949ab;
+  transform: translateY(-2px);
+}
+
+button[color="accent"]:hover {
+  background-color: #0097a7;
+  transform: translateY(-2px);
+}
+
+button[color="warn"]:hover {
+  background-color: #e53935;
+  transform: translateY(-2px);
+}
+
+/* 激活按钮样式 */
 button.active {
-  box-shadow: 0 0 10px rgba(63, 81, 181, 0.6);
+  box-shadow: 0 0 15px rgba(63, 81, 181, 0.6);
+  transform: scale(1.05);
+}
+
+/* 响应式布局 */
+@media (max-width: 600px) {
+  .workflow-card {
+    margin: 5vh 5vw;
+    padding: 6vw;
+  }
+
+  .button-group {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  button[mat-raised-button] {
+    width: 100%;
+  }
 }
