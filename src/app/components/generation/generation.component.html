@@ -1,8 +1,35 @@
 <mat-card>
   <h2>🧠 智能合约生成模块</h2>
   <mat-form-field appearance="outline" class="w-full">
-    <textarea matInput placeholder="请输入自然语言需求描述..." [(ngModel)]="description"></textarea>
+    <textarea 
+      matInput 
+      placeholder="请输入自然语言需求描述..." 
+      [(ngModel)]="description" 
+      rows="6">
+    </textarea>
   </mat-form-field>
-  <button mat-raised-button color="primary" (click)="generateContract()">生成合约</button>
-  <pre *ngIf="generatedCode">{{ generatedCode }}</pre>
+
+  <div class="button-group">
+    <button 
+      mat-raised-button 
+      color="primary" 
+      (click)="generateContract()" 
+      [disabled]="isGenerating || !description.trim()">
+      {{ isGenerating ? '生成中...' : '生成合约' }}
+  </button>
+
+  <button 
+      mat-raised-button 
+      color="accent" 
+      (click)="goToDetection()"
+      [disabled]="!generatedCode.trim()">
+      下一步：漏洞检测 →
+    </button>
+    
+  </div>
+  
+
+  <pre *ngIf="generatedCode" style="white-space: pre-wrap; margin-top: 20px; background: #f5f5f5; padding: 15px; border-radius: 6px;">
+{{ generatedCode }}
+  </pre>
 </mat-card>

@@ -8,16 +8,85 @@
       [(ngModel)]="code"
       rows="6">
     </textarea>
+    <button 
+      mat-icon-button 
+      matSuffix 
+      (click)="copyCode()" 
+      [disabled]="!code"
+      matTooltip="复制代码">
+      <mat-icon>content_copy</mat-icon>
+    </button>
   </mat-form-field>
 
-  <button mat-raised-button color="accent" (click)="detect()">开始检测</button>
+  <div class="button-group">
+    <button mat-raised-button color="accent" (click)="detect()" [disabled]="isDetecting || !code">
+      {{ isDetecting ? '检测中...' : '开始检测' }}
+    </button>
+    
+    <button 
+      mat-raised-button 
+      color="primary" 
+      (click)="generateReport()" 
+      [disabled]="!report || isGeneratingReport"
+      style="margin-left: 10px;">
+      {{ isGeneratingReport ? '生成中...' : '生成检测报告' }}
+    </button>
 
-  <div *ngIf="report" style="margin-top: 20px;">
+    <button 
+      mat-raised-button 
+      color="warn" 
+      (click)="goToRepair()" 
+      [disabled]="!report"
+      style="margin-left: 10px;">
+      下一步：漏洞修补 →
+    </button>
+
+    <button 
+      mat-raised-button 
+      color="warn" 
+      (click)="goToTestchain()" 
+      [disabled]="!report"
+      style="margin-left: 10px;">
+      合约完成，前往测试网
+    </button>
+  </div>
+
+  <!-- 检测结果 -->
+  <div *ngIf="report && !fullReport" style="margin-top: 20px;">
     <h3>检测结果：</h3>
     <mat-list>
       <mat-list-item *ngFor="let v of report.vulnerabilities">
-        <b>{{ v.type }}</b> - 严重等级: {{ v.severity }}
+        <div mat-line>
+          <b>{{ v.type }}</b> - 严重等级: 
+          <span [style.color]="getSeverityColor(v.severity)">{{ v.severity }}</span>
+        </div>
+        <div mat-line style="font-size: 12px; color: #666;">
+          行号: {{ v.line }} | 建议: {{ v.suggestion }}
+        </div>
       </mat-list-item>
     </mat-list>
+  </div>
+
+  <!-- 完整报告 -->
+  <div *ngIf="fullReport" style="margin-top: 20px;">
+    <mat-card class="report-card">
+      <mat-card-header>
+        <mat-card-title>
+          <h3>📊 漏洞检测完整报告</h3>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="report-content" [innerHTML]="fullReport"></div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button (click)="downloadReport()">下载报告</button>
+        <button mat-button (click)="closeReport()">关闭</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <!-- 错误提示 -->
+  <div *ngIf="errorMessage" style="margin-top: 20px; color: red;">
+    <mat-error>{{ errorMessage }}</mat-error>
   </div>
 </mat-card>

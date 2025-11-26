@@ -15,3 +15,9 @@ a.active {
   color: #1976d2;
   border-bottom: 2px solid #1976d2;
 }
+
+a.active {
+  color: #1976d2;
+  border-bottom: 2px solid #1976d2;
+  background-color: rgba(25, 118, 210, 0.1);
+}

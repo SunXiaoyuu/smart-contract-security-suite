@@ -1,0 +1,850 @@
+PS D:\angular\smart-contract-security-suite\server> node server.js
+[dotenv@17.2.3] injecting env (0) from .env -- tip: 🔄 add secrets lifecycle management: https://dotenvx.com/ops
+✅ API Key 已加载: sk-59e780bc3453...   
+✅ 检测服务已启动: http://localhost:3000
+📡 可用接口：
+   - POST /api/detect   (Slither 检测) 
+   - POST /api/generate (智能合约生成) 
+   - POST /api/fix      (漏洞修复)     
+   - POST /api/report   (生成报告)     
+🧠 收到合约生成请求...
+✅ 合约生成成功
+📥 收到检测请求...
+🔍 正在使用 Slither 检测...
+📄 Slither 输出:
+ 'slither' �����ڲ����ⲿ���Ҳ���ǿ����еĳ���
+���������ļ���
+
+❌ 读取报告失败: Error: 报告文件未生成   
+    at D:\angular\smart-contract-security-suite\server\server.js:84:17
+    at ChildProcess.exithandler (node:child_process:421:5)
+    at ChildProcess.emit (node:events:518:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:304:5)
+🗑️ 已清理: Contract.sol
+📊 生成报告请求...
+🧠 收到合约生成请求...
+✅ 合约生成成功
+🧠 收到合约生成请求...
+❌ 生成失败: aborted
+🧠 收到合约生成请求...
+❌ 生成失败: aborted
+🧠 收到合约生成请求...
+✅ 合约生成成功
+🧠 收到合约生成请求...
+❌ 生成失败: aborted
+🧠 收到合约生成请求...
+✅ 合约生成成功
+📥 收到检测请求...
+🔍 正在使用 Slither 检测...
+📄 Slither 输出:
+ 'slither' �����ڲ����ⲿ���Ҳ���ǿ����еĳ���
+���������ļ���
+
+❌ 读取报告失败: Error: 报告文件未生成
+    at D:\angular\smart-contract-security-suite\server\server.js:84:17
+    at ChildProcess.exithandler (node:child_process:421:5)
+    at ChildProcess.emit (node:events:518:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:304:5)
+🗑️ 已清理: Contract.sol
+📊 生成报告请求...
+🧠 收到合约生成请求...
+🧠 收到合约生成请求...
+✅ 合约生成成功
+✅ 合约生成成功
+📥 收到检测请求...
+🔍 正在使用 Slither 检测...
+📄 Slither 输出:
+ 'slither' �����ڲ����ⲿ���Ҳ���ǿ����еĳ���
+���������ļ���
+
+❌ 读取报告失败: Error: 报告文件未生成
+    at D:\angular\smart-contract-security-suite\server\server.js:84:17
+    at ChildProcess.exithandler (node:child_process:421:5)
+    at ChildProcess.emit (node:events:518:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:304:5)
+🗑️ 已清理: Contract.sol
+📥 收到检测请求...
+🔍 正在使用 Slither 检测...
+📄 Slither 输出:
+ 'slither' �����ڲ����ⲿ���Ҳ���ǿ����еĳ���
+���������ļ���
+
+❌ 读取报告失败: Error: 报告文件未生成
+    at D:\angular\smart-contract-security-suite\server\server.js:84:17
+    at ChildProcess.exithandler (node:child_process:421:5)
+    at ChildProcess.emit (node:events:518:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:304:5)
+🗑️ 已清理: Contract.sol
+📊 生成报告请求...
+🧠 收到合约生成请求...
+✅ 合约生成成功
+🧠 收到合约生成请求...
+❌ 生成失败: aborted
+📥 收到检测请求...
+🔍 正在使用 Slither 检测...
+📄 Slither 输出:
+ 'slither' �����ڲ����ⲿ���Ҳ���ǿ����еĳ���
+���������ļ���
+
+❌ 读取报告失败: Error: 报告文件未生成
+    at D:\angular\smart-contract-security-suite\server\server.js:84:17
+    at ChildProcess.exithandler (node:child_process:421:5)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:304:5)
+🗑️ 已清理: Contract.sol
+📊 生成报告请求...
+📥 收到检测请求...
+🔍 正在使用 Slither 检测...
+📄 Slither 输出:
+ 'slither' �����ڲ����ⲿ���Ҳ���ǿ����еĳ���
+
+❌ 读取报告失败: Error: 报告文件未生成
+    at D:\angular\smart-contract-security-suite\server\server.js:84:17
+    at ChildProcess.exithandler (node:child_process:421:5)
+    at ChildProcess.emit (node:events:518:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:304:5)
+🗑️ 已清理: Contract.sol
+PS D:\angular\smart-contract-security-suite\server> git clone https://github.com/crytic/slither.git  
+Cloning into 'slither'...
+remote: Enumerating objects: 81749, done.
+remote: Counting objects: 100% (909/909), done.
+remote: Compressing objects: 100% (247/247), done.
+remote: Total 81749 (delta 819), reused 669 (delta 662), pack-reused 80840 (from 3)
+Receiving objects: 100% (81749/81749), 69.93 MiB | 3.60 MiB/s, done.
+Resolving deltas: 100% (42102/42102), done.
+Updating files: 100% (15841/15841), done.
+PS D:\angular\smart-contract-security-suite\server> node server.js                                   
+[dotenv@17.2.3] injecting env (0) from .env -- tip: ✅ audit secrets and track compliance: https://dot
+envx.com/ops
+✅ API Key 已加载: sk-59e780bc3453...
+✅ 检测服务已启动: http://localhost:3000
+📡 可用接口：
+   - POST /api/detect   (Slither 检测)
+   - POST /api/generate (智能合约生成)
+   - POST /api/fix      (漏洞修复)
+   - POST /api/report   (生成报告)
+📥 收到检测请求...
+🔍 正在使用 Slither 检测...
+📄 Slither 输出:
+ 'slither' �����ڲ����ⲿ���Ҳ���ǿ����еĳ���
+���������ļ���
+
+❌ 读取报告失败: Error: 报告文件未生成
+    at D:\angular\smart-contract-security-suite\server\server.js:84:17
+    at ChildProcess.exithandler (node:child_process:421:5)
+    at ChildProcess.emit (node:events:518:28)
+    at ChildProcess._handle.onexit (node:internal/child_process:304:5)
+🗑️ 已清理: Contract.sol
+🧠 收到合约生成请求...
+✅ 合约生成成功
+📥 收到检测请求...
+🔍 正在使用 Slither 检测...
+📄 Slither 输出:
+ 'slither' �����ڲ����ⲿ���Ҳ���ǿ����еĳ���
+❌ 读取报告失败: Error: 报告文件未生成
+    at D:\angular\smart-contract-security-suite\server\server.js:84:17
+    at ChildProcess.exithandler (node:child_process:421:5)
+    at ChildProcess.emit (node:events:518:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:304:5)
+🗑️ 已清理: Contract.sol
+PS D:\angular\smart-contract-security-suite\server> pip install solc-select
+Requirement already satisfied: packaging in d:\anaconda\lib\site-packages (from solc-select) (24.0)  
+Collecting pycryptodome>=3.4.6
+  Downloading pycryptodome-3.23.0-cp37-abi3-win_amd64.whl (1.8 MB)
+     |████████████████████████████████| 1.8 MB 819 kB/s
+Installing collected packages: pycryptodome, solc-select
+Successfully installed pycryptodome-3.23.0 solc-select-1.1.0
+PS D:\angular\smart-contract-security-suite\server>
+PS D:\angular\smart-contract-security-suite\server> conda create -n contractenv python=3.8
+ProxyError: Conda cannot proceed due to an error in your proxy configuration.
+Check for typos and other configuration errors in any '.netrc' file in your home directory,
+any environment variables ending in '_PROXY', and any other system-wide proxy
+configuration settings.
+
+
+PS D:\angular\smart-contract-security-suite\server> python -m venv slither-env
+PS D:\angular\smart-contract-security-suite\server> source slither-env\Scripts\activate
+source : 无法将“source”项识别为 cmdlet、函数、脚本文件或可运行程序的名称。请检查名称的拼写，如果包   
+括路径，请确保路径正确，然后再试一次。
+所在位置 行:1 字符: 1
++ source slither-env\Scripts\activate
++ ~~~~~~
+    + CategoryInfo          : ObjectNotFound: (source:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+PS D:\angular\smart-contract-security-suite\server> slither-env\Scripts\activate
+(slither-env) PS D:\angular\smart-contract-security-suite\server> pip install solc-select
+Collecting solc-select
+  Using cached https://files.pythonhosted.org/packages/8e/1f/86baaf154964018ee9766e7655f6f80e7fd491a93a3f1bb1020b29ecd0da/solc_select-1.1.0-py3-none-any.whl
+Collecting pycryptodome>=3.4.6 (from solc-select)
+  Downloading https://files.pythonhosted.org/packages/8e/a6/8452177684d5e906854776276ddd34eca30d1b1e15aa1ee9cefc289a33f5/pycryptodome-3.23.0.tar.gz (4.9MB)
+     |████████████████████████████████| 4.9MB 819kB/s
+  Installing build dependencies ... done
+  Getting requirements to build wheel ... error
+  ERROR: Command errored out with exit status 1:
+   command: 'd:\angular\smart-contract-security-suite\server\slither-env\scripts\python.exe' 'd:\angular\smart-contract-security-suite\server\slither-env\lib\site-packages\pip\_vendor\pep517\_in_process.py' get_requires_for_build_wheel 'C:\Users\lenovo\AppData\Local\Temp\tmp2ccih0pw'
+       cwd: C:\Users\lenovo\AppData\Local\Temp\pip-install-39t3mxbw\pycryptodome
+  Complete output (28 lines):
+  Testing support for clang
+  Traceback (most recent call last):
+    File "d:\angular\smart-contract-security-suite\server\slither-env\lib\site-packages\pip\_vendor\pep517\_in_process.py", line 207, in <module>
+      main()
+    File "d:\angular\smart-contract-security-suite\server\slither-env\lib\site-packages\pip\_vendor\pep517\_in_process.py", line 197, in main
+      json_out['return_val'] = hook(**hook_input['kwargs'])
+    File "d:\angular\smart-contract-security-suite\server\slither-env\lib\site-packages\pip\_vendor\pep517\_in_process.py", line 54, in get_requires_for_build_wheel
+      return hook(config_settings)
+    File "C:\Users\lenovo\AppData\Local\Temp\pip-build-env-1lzv5fdj\overlay\Lib\site-packages\setuptools\build_meta.py", line 333, in get_requires_for_build_wheel
+      return self._get_build_requires(config_settings, requirements=[])
+    File "C:\Users\lenovo\AppData\Local\Temp\pip-build-env-1lzv5fdj\overlay\Lib\site-packages\setuptools\build_meta.py", line 303, in _get_build_requires
+      self.run_setup()
+    File "C:\Users\lenovo\AppData\Local\Temp\pip-build-env-1lzv5fdj\overlay\Lib\site-packages\setuptools\build_meta.py", line 319, in run_setup
+      exec(code, locals())
+    File "<string>", line 497, in <module>
+    File "C:\Users\lenovo\AppData\Local\Temp\pip-install-39t3mxbw\pycryptodome\compiler_opt.py", line 333, in set_compiler_options
+      clang = compiler_is_clang()
+    File "C:\Users\lenovo\AppData\Local\Temp\pip-install-39t3mxbw\pycryptodome\compiler_opt.py", line 257, in compiler_is_clang
+      return test_compilation(source, msg="clang")
+    File "C:\Users\lenovo\AppData\Local\Temp\pip-install-39t3mxbw\pycryptodome\compiler_opt.py", line 82, in test_compilation
+      objects = compiler.compile([fname], extra_postargs=extra_cc_options)
+      self.initialize()
+    File "C:\Users\lenovo\AppData\Local\Temp\pip-build-env-1lzv5fdj\overlay\Lib\site-packages\setuptools\_distutils\_msvccompiler.py", line 289, in initialize
+      vc_env = _get_vc_env(plat_spec)
+    File "C:\Users\lenovo\AppData\Local\Temp\pip-build-env-1lzv5fdj\overlay\Lib\site-packages\setuptools\_distutils\_msvccompiler.py", line 150, in _get_vc_env
+      raise DistutilsPlatformError(
+  distutils.errors.DistutilsPlatformError: Microsoft Visual C++ 14.0 or greater is required. Get it with "Microsoft C++ Build Tools": https://visualstudio.microsoft.com/visual-cpp-build-tools/
+ERROR: Command errored out with exit status 1: 'd:\angular\smart-contract-security-suite\server\slither-env\scripts\python.exe' 'd:\angular\smart-contract-security-suite\server\slither-env\lib\site-packages\pip\_vendor\pep517\_in_process.py' get_requires_for_build_wheel 'C:\Users\lenovo\AppData\Local\Temp\tmp2ccih0pw' Check the logs for full command output.
+WARNING: You are using pip version 19.2.3, however version 25.0.1 is available.
+You should consider upgrading via the 'python -m pip install --upgrade pip' command.
+(slither-env) PS D:\angular\smart-contract-security-suite\server> python -m pip install --upgrade pip
+
+Collecting pip
+  Downloading https://files.pythonhosted.org/packages/c9/bc/b7db44f5f39f9d0494071bddae6880eb645970366d0a200022a1a93d57f5/pip-25.0.1-py3-none-any.whl (1.8MB)
+     |████████████████████████████████| 1.8MB 819kB/s
+Installing collected packages: pip
+  Found existing installation: pip 19.2.3
+    Uninstalling pip-19.2.3:
+      Successfully uninstalled pip-19.2.3
+Successfully installed pip-25.0.1
+ion broken by 'ProxyError('Cannot connect to proxy.', FileNotFoundError(2, 'No such file or directory'))': /simple/solc-select/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ProxyError('Cannot connect to proxy.', FileNotFoundError(2, 'No such file or directory'))': /simple/solc-select/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ProxyError('Cannot connect to proxy.', FileNotFoundError(2, 'No such file or directory'))': /simple/solc-select/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ProxyError('Cannot connect to proxy.', FileNotFoundError(2, 'No such file or directory'))': /simple/solc-select/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ProxyError('Cannot connect to proxy.', FileNotFoundError(2, 'No such file or directory'))': /simple/solc-select/
+ERROR: Could not find a version that satisfies the requirement solc-select (from versions: none)     
+ERROR: No matching distribution found for solc-select
+(slither-env) PS D:\angular\smart-contract-security-suite\server> pip install pycryptodome --only-binary=:all:
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ProxyError('Cannot connect to proxy.', FileNotFoundError(2, 'No such file or directory'))': /simple/pycryptodome/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ProxyError('Cannot connect to proxy.', FileNotFoundError(2, 'No such file or directory'))': /simple/pycryptodome/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ProxyError('Cannot connect to proxy.', FileNotFoundError(2, 'No such file or directory'))': /simple/pycryptodome/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ProxyError('Cannot connect to proxy.', FileNotFoundError(2, 'No such file or directory'))': /simple/pycryptodome/
+ion broken by 'ProxyError('Cannot connect to proxy.', FileNotFoundError(2, 'No such file or directory'))': /simple/pycryptodome/
+ERROR: Could not find a version that satisfies the requirement pycryptodome (from versions: none)    
+ERROR: No matching distribution found for pycryptodome
+(slither-env) PS D:\angular\smart-contract-security-suite\server> pip install solc-select
+Collecting solc-select
+  Downloading solc_select-1.1.0-py3-none-any.whl.metadata (46 kB)
+Collecting pycryptodome>=3.4.6 (from solc-select)
+  Downloading pycryptodome-3.23.0-cp37-abi3-win_amd64.whl.metadata (3.5 kB)
+Collecting packaging (from solc-select)
+  Using cached packaging-25.0-py3-none-any.whl.metadata (3.3 kB)
+Downloading solc_select-1.1.0-py3-none-any.whl (33 kB)
+Downloading pycryptodome-3.23.0-cp37-abi3-win_amd64.whl (1.8 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 7.6 MB/s eta 0:00:00
+Installing collected packages: pycryptodome, packaging, solc-select
+Successfully installed packaging-25.0 pycryptodome-3.23.0 solc-select-1.1.0
+Traceback (most recent call last):
+  File "D:\anaconda\lib\runpy.py", line 194, in _run_module_as_main
+  File "D:\anaconda\lib\runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+py", line 7, in <module>
+ain__.py", line 65, in solc_select
+    switch_global_version(args.get(USE_VERSION), args.get("always_install"), silent=False)
+  File "d:\angular\smart-contract-security-suite\server\slither-env\lib\site-packages\solc_select\solc_select.py", line 218, in switch_global_version
+    raise argparse.ArgumentTypeError(f"'{version}' must be installed prior to use.")
+argparse.ArgumentTypeError: '0.8.20' must be installed prior to use.
+(slither-env) PS D:\angular\smart-contract-security-suite\server> solc-select --version 
+usage: solc-select [-h] {install,use,versions,upgrade} ...
+solc-select: error: unrecognized arguments: --version
+(slither-env) PS D:\angular\smart-contract-security-suite\server> solc-select -v       
+usage: solc-select [-h] {install,use,versions,upgrade} ...
+solc-select: error: unrecognized arguments: -v
+(slither-env) PS D:\angular\smart-contract-security-suite\server> solc-select --version
+solc-select: error: unrecognized arguments: --version
+No solc version installed. Run `solc-select install --help` for more information
+(slither-env) PS D:\angular\smart-contract-security-suite\server> solc-select -h       
+
+positional arguments:
+  {install,use,versions,upgrade}
+                        Allows users to install and quickly switch between Solidity compiler
+                        versions
+    install             list and install available solc versions
+    use                 change the version of global solc compiler
+    versions            prints out all installed solc versions
+    upgrade             upgrades solc-select
+
+optional arguments:
+  -h, --help            show this help message and exit
+(slither-env) PS D:\angular\smart-contract-security-suite\server> solc-select versions
+No solc version installed. Run `solc-select install --help` for more information
+(slither-env) PS D:\angular\smart-contract-security-suite\server> solc-select install 0.8.20
+Version '0.8.20' installed.
+  File "D:\anaconda\lib\runpy.py", line 194, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "D:\anaconda\lib\runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "D:\angular\smart-contract-security-suite\server\slither-env\Scripts\solc-select.exe\__main__.py", line 7, in <module>
+  File "d:\angular\smart-contract-security-suite\server\slither-env\lib\site-packages\solc_select\__main__.py", line 71, in solc_select
+    res = current_version()
+  File "d:\angular\smart-contract-security-suite\server\slither-env\lib\site-packages\solc_select\solc_select.py", line 76, in current_version
+    raise argparse.ArgumentTypeError(
+argparse.ArgumentTypeError: No solc version set. Run `solc-select use VERSION` or set SOLC_VERSION environment variable.
+(slither-env) PS D:\angular\smart-contract-security-suite\server> solc-select use 0.8.20    
+Switched global version to 0.8.20
+(slither-env) PS D:\angular\smart-contract-security-suite\server> npm install express cors axios dotenv
+npm error code EPERM
+npm error syscall open
+npm error path D:\nodejs\node_cache\_cacache\tmp\be9aabcf
+npm error errno EPERM
+npm error FetchError: Invalid response body while trying to fetch https://registry.npmjs.org/axios: EPERM: operation not permitted, open 'D:\nodejs\node_cache\_cacache\tmp\be9aabcf'
+npm error     at D:\nodejs\node_modules\npm\node_modules\minipass-fetch\lib\body.js:170:15
+npm error     at async Response.json (D:\nodejs\node_modules\npm\node_modules\minipass-fetch\lib\body.js:75:17)
+npm error     at async RegistryFetcher.packument (D:\nodejs\node_modules\npm\node_modules\pacote\lib\registry.js:98:25)
+npm error     at async RegistryFetcher.manifest (D:\nodejs\node_modules\npm\node_modules\pacote\lib\registry.js:128:23)
+npm error     at async #fetchManifest (D:\nodejs\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\build-ideal-tree.js:1202:20)
+npm error     at async #nodeFromEdge (D:\nodejs\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\build-ideal-tree.js:1040:19)
+npm error     at async #buildDepStep (D:\nodejs\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\build-ideal-tree.js:904:11)
+npm error     at async Arborist.buildIdealTree (D:\nodejs\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\build-ideal-tree.js:181:7)
+npm error     at async Promise.all (index 1)
+npm error     at async Arborist.reify (D:\nodejs\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:131:5) {
+npm error   code: 'EPERM',
+npm error   errno: 'EPERM',
+npm error   syscall: 'open',
+npm error   path: 'D:\\nodejs\\node_cache\\_cacache\\tmp\\be9aabcf',
+npm error   type: 'system',
+npm error }
+npm error
+npm error The operation was rejected by your operating system.
+npm error It's possible that the file was already in use (by a text editor or antivirus),
+npm error or that you lack permissions to access it.
+npm error
+npm error If you believe this might be a permissions issue, please double-check the
+npm error permissions of the file and its containing directories, or try running
+npm error the command again as root/Administrator.
+npm notice
+npm notice New major version of npm available! 10.9.2 -> 11.6.3
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.6.3
+npm notice To update run: npm install -g npm@11.6.3
+npm notice
+npm error Log files were not written due to an error writing to the directory: D:\nodejs\node_cache\_logs
+npm error You can rerun the command with `--loglevel=verbose` to see the logs in your terminal       
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ProxyError('Cannot connect to proxy.', FileNotFoundError(2, 'No such file or directory'))': /simple/slither-analyzer/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ProxyError('Cannot connect to proxy.', FileNotFoundError(2, 'No such file or directory'))': /simple/slither-analyzer/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ProxyError('Cannot connect to proxy.', FileNotFoundError(2, 'No such file or directory'))': /simple/slither-analyzer/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ProxyError('Cannot connect to proxy.', FileNotFoundError(2, 'No such file or directory'))': /simple/slither-analyzer/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ProxyError('Cannot connect to proxy.', FileNotFoundError(2, 'No such file or directory'))': /simple/slither-analyzer/
+ERROR: Could not find a version that satisfies the requirement slither-analyzer (from versions: none)ERROR: No matching distribution found for slither-analyzer
+(slither-env) PS D:\angular\smart-contract-security-suite\server> pip install slither-analyzer       
+Collecting slither-analyzer
+  Downloading slither_analyzer-0.11.3-py3-none-any.whl.metadata (35 kB)
+Requirement already satisfied: packaging in d:\angular\smart-contract-security-suite\server\slither-env\lib\site-packages (from slither-analyzer) (25.0)
+Collecting prettytable>=3.10.2 (from slither-analyzer)
+  Downloading prettytable-3.11.0-py3-none-any.whl.metadata (30 kB)
+Requirement already satisfied: pycryptodome>=3.4.6 in d:\angular\smart-contract-security-suite\server\slither-env\lib\site-packages (from slither-analyzer) (3.23.0)
+Collecting crytic-compile<0.4.0,>=0.3.9 (from slither-analyzer)
+  Downloading crytic_compile-0.3.11-py3-none-any.whl.metadata (3.8 kB)
+Collecting web3<8,>=7.10 (from slither-analyzer)
+  Downloading web3-7.14.0-py3-none-any.whl.metadata (5.6 kB)
+Collecting eth-abi>=5.0.1 (from slither-analyzer)
+  Downloading eth_abi-5.2.0-py3-none-any.whl.metadata (3.8 kB)
+Collecting eth-typing>=5.0.0 (from slither-analyzer)
+  Downloading eth_typing-5.2.1-py3-none-any.whl.metadata (3.2 kB)
+Collecting eth-utils>=5.0.0 (from slither-analyzer)
+  Downloading eth_utils-5.3.1-py3-none-any.whl.metadata (5.7 kB)
+Collecting cbor2 (from crytic-compile<0.4.0,>=0.3.9->slither-analyzer)
+  Downloading cbor2-5.6.5-cp38-cp38-win_amd64.whl.metadata (6.2 kB)
+Requirement already satisfied: solc-select>=v1.0.4 in d:\angular\smart-contract-security-suite\server\slither-env\lib\site-packages (from crytic-compile<0.4.0,>=0.3.9->slither-analyzer) (1.1.0)
+Collecting parsimonious<0.11.0,>=0.10.0 (from eth-abi>=5.0.1->slither-analyzer)
+  Downloading parsimonious-0.10.0-py3-none-any.whl.metadata (25 kB)
+Collecting typing_extensions>=4.5.0 (from eth-typing>=5.0.0->slither-analyzer)
+  Downloading typing_extensions-4.13.2-py3-none-any.whl.metadata (3.0 kB)
+Collecting eth-hash>=0.3.1 (from eth-utils>=5.0.0->slither-analyzer)
+  Downloading eth_hash-0.7.1-py3-none-any.whl.metadata (4.2 kB)
+Collecting cytoolz>=0.10.1 (from eth-utils>=5.0.0->slither-analyzer)
+  Downloading cytoolz-1.0.1-cp38-cp38-win_amd64.whl.metadata (4.7 kB)
+Collecting pydantic<3,>=2.0.0 (from eth-utils>=5.0.0->slither-analyzer)
+  Downloading pydantic-2.10.6-py3-none-any.whl.metadata (30 kB)
+Collecting wcwidth (from prettytable>=3.10.2->slither-analyzer)
+  Downloading wcwidth-0.2.14-py2.py3-none-any.whl.metadata (15 kB)
+Collecting eth-account>=0.13.6 (from web3<8,>=7.10->slither-analyzer)
+  Downloading eth_account-0.13.7-py3-none-any.whl.metadata (3.7 kB)
+Collecting hexbytes>=1.2.0 (from web3<8,>=7.10->slither-analyzer)
+  Downloading hexbytes-1.3.1-py3-none-any.whl.metadata (3.3 kB)
+Collecting aiohttp>=3.7.4.post0 (from web3<8,>=7.10->slither-analyzer)
+  Downloading aiohttp-3.10.11-cp38-cp38-win_amd64.whl.metadata (8.0 kB)
+Collecting pywin32>=223 (from web3<8,>=7.10->slither-analyzer)
+  Downloading pywin32-311-cp38-cp38-win_amd64.whl.metadata (9.8 kB)
+Collecting requests>=2.23.0 (from web3<8,>=7.10->slither-analyzer)
+  Downloading requests-2.32.4-py3-none-any.whl.metadata (4.9 kB)
+Collecting types-requests>=2.0.0 (from web3<8,>=7.10->slither-analyzer)
+  Downloading types_requests-2.32.0.20241016-py3-none-any.whl.metadata (1.9 kB)
+Collecting websockets<16.0.0,>=10.0.0 (from web3<8,>=7.10->slither-analyzer)
+  Downloading websockets-13.1-cp38-cp38-win_amd64.whl.metadata (7.0 kB)
+Collecting pyunormalize>=15.0.0 (from web3<8,>=7.10->slither-analyzer)
+  Downloading pyunormalize-17.0.0-py3-none-any.whl.metadata (5.7 kB)
+Collecting aiohappyeyeballs>=2.3.0 (from aiohttp>=3.7.4.post0->web3<8,>=7.10->slither-analyzer)
+  Downloading aiohappyeyeballs-2.4.4-py3-none-any.whl.metadata (6.1 kB)
+Collecting aiosignal>=1.1.2 (from aiohttp>=3.7.4.post0->web3<8,>=7.10->slither-analyzer)
+  Downloading aiosignal-1.3.1-py3-none-any.whl.metadata (4.0 kB)
+Collecting attrs>=17.3.0 (from aiohttp>=3.7.4.post0->web3<8,>=7.10->slither-analyzer)
+  Downloading attrs-25.3.0-py3-none-any.whl.metadata (10 kB)
+Collecting frozenlist>=1.1.1 (from aiohttp>=3.7.4.post0->web3<8,>=7.10->slither-analyzer)
+  Downloading frozenlist-1.5.0-cp38-cp38-win_amd64.whl.metadata (14 kB)
+Collecting multidict<7.0,>=4.5 (from aiohttp>=3.7.4.post0->web3<8,>=7.10->slither-analyzer)
+  Downloading multidict-6.1.0-cp38-cp38-win_amd64.whl.metadata (5.1 kB)
+Collecting yarl<2.0,>=1.12.0 (from aiohttp>=3.7.4.post0->web3<8,>=7.10->slither-analyzer)
+  Downloading yarl-1.15.2-cp38-cp38-win_amd64.whl.metadata (58 kB)
+Collecting async-timeout<6.0,>=4.0 (from aiohttp>=3.7.4.post0->web3<8,>=7.10->slither-analyzer)
+  Downloading async_timeout-5.0.1-py3-none-any.whl.metadata (5.1 kB)
+Collecting toolz>=0.8.0 (from cytoolz>=0.10.1->eth-utils>=5.0.0->slither-analyzer)
+  Downloading toolz-1.0.0-py3-none-any.whl.metadata (5.1 kB)
+Collecting bitarray>=2.4.0 (from eth-account>=0.13.6->web3<8,>=7.10->slither-analyzer)
+  Downloading bitarray-3.8.0-cp38-cp38-win_amd64.whl.metadata (35 kB)
+Collecting eth-keyfile<0.9.0,>=0.7.0 (from eth-account>=0.13.6->web3<8,>=7.10->slither-analyzer)
+  Downloading eth_keyfile-0.8.1-py3-none-any.whl.metadata (8.5 kB)
+Collecting eth-keys>=0.4.0 (from eth-account>=0.13.6->web3<8,>=7.10->slither-analyzer)
+  Downloading eth_keys-0.7.0-py3-none-any.whl.metadata (13 kB)
+Collecting eth-rlp>=2.1.0 (from eth-account>=0.13.6->web3<8,>=7.10->slither-analyzer)
+  Downloading eth_rlp-2.2.0-py3-none-any.whl.metadata (3.3 kB)
+Collecting rlp>=1.0.0 (from eth-account>=0.13.6->web3<8,>=7.10->slither-analyzer)
+  Downloading rlp-4.1.0-py3-none-any.whl.metadata (3.2 kB)
+Collecting ckzg>=2.0.0 (from eth-account>=0.13.6->web3<8,>=7.10->slither-analyzer)
+  Downloading ckzg-2.1.5-cp38-cp38-win_amd64.whl.metadata (754 bytes)
+Collecting regex>=2022.3.15 (from parsimonious<0.11.0,>=0.10.0->eth-abi>=5.0.1->slither-analyzer)
+  Using cached regex-2024.11.6-cp38-cp38-win_amd64.whl.metadata (41 kB)
+Collecting annotated-types>=0.6.0 (from pydantic<3,>=2.0.0->eth-utils>=5.0.0->slither-analyzer)
+  Downloading annotated_types-0.7.0-py3-none-any.whl.metadata (15 kB)
+Collecting pydantic-core==2.27.2 (from pydantic<3,>=2.0.0->eth-utils>=5.0.0->slither-analyzer)
+  Downloading pydantic_core-2.27.2-cp38-cp38-win_amd64.whl.metadata (6.7 kB)
+Collecting charset_normalizer<4,>=2 (from requests>=2.23.0->web3<8,>=7.10->slither-analyzer)
+  Downloading charset_normalizer-3.4.4-cp38-cp38-win_amd64.whl.metadata (38 kB)
+Collecting idna<4,>=2.5 (from requests>=2.23.0->web3<8,>=7.10->slither-analyzer)
+  Downloading idna-3.11-py3-none-any.whl.metadata (8.4 kB)
+Collecting urllib3<3,>=1.21.1 (from requests>=2.23.0->web3<8,>=7.10->slither-analyzer)
+  Using cached urllib3-2.2.3-py3-none-any.whl.metadata (6.5 kB)
+Collecting certifi>=2017.4.17 (from requests>=2.23.0->web3<8,>=7.10->slither-analyzer)
+  Downloading certifi-2025.11.12-py3-none-any.whl.metadata (2.5 kB)
+Collecting propcache>=0.2.0 (from yarl<2.0,>=1.12.0->aiohttp>=3.7.4.post0->web3<8,>=7.10->slither-analyzer)
+  Downloading propcache-0.2.0-cp38-cp38-win_amd64.whl.metadata (7.9 kB)
+Downloading slither_analyzer-0.11.3-py3-none-any.whl (817 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 818.0/818.0 kB 4.0 MB/s eta 0:00:00
+Downloading crytic_compile-0.3.11-py3-none-any.whl (99 kB)
+Downloading eth_abi-5.2.0-py3-none-any.whl (28 kB)
+Downloading eth_typing-5.2.1-py3-none-any.whl (19 kB)
+Downloading eth_utils-5.3.1-py3-none-any.whl (102 kB)
+Downloading prettytable-3.11.0-py3-none-any.whl (28 kB)
+Downloading web3-7.14.0-py3-none-any.whl (1.4 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.4/1.4 MB 11.9 MB/s eta 0:00:00
+Downloading aiohttp-3.10.11-cp38-cp38-win_amd64.whl (384 kB)
+Downloading cytoolz-1.0.1-cp38-cp38-win_amd64.whl (368 kB)
+Downloading eth_account-0.13.7-py3-none-any.whl (587 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 587.5/587.5 kB 21.7 MB/s eta 0:00:00
+Downloading eth_hash-0.7.1-py3-none-any.whl (8.0 kB)
+Downloading hexbytes-1.3.1-py3-none-any.whl (5.1 kB)
+Downloading parsimonious-0.10.0-py3-none-any.whl (48 kB)
+Downloading pydantic-2.10.6-py3-none-any.whl (431 kB)
+Downloading pydantic_core-2.27.2-cp38-cp38-win_amd64.whl (2.0 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.0/2.0 MB 36.6 MB/s eta 0:00:00
+Downloading pyunormalize-17.0.0-py3-none-any.whl (51 kB)
+Downloading pywin32-311-cp38-cp38-win_amd64.whl (9.6 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 9.6/9.6 MB 11.5 MB/s eta 0:00:00
+Downloading requests-2.32.4-py3-none-any.whl (64 kB)
+Downloading types_requests-2.32.0.20241016-py3-none-any.whl (15 kB)
+Downloading typing_extensions-4.13.2-py3-none-any.whl (45 kB)
+Downloading websockets-13.1-cp38-cp38-win_amd64.whl (159 kB)
+Downloading cbor2-5.6.5-cp38-cp38-win_amd64.whl (66 kB)
+Downloading wcwidth-0.2.14-py2.py3-none-any.whl (37 kB)
+Downloading aiohappyeyeballs-2.4.4-py3-none-any.whl (14 kB)
+Downloading aiosignal-1.3.1-py3-none-any.whl (7.6 kB)
+Downloading annotated_types-0.7.0-py3-none-any.whl (13 kB)
+Downloading async_timeout-5.0.1-py3-none-any.whl (6.2 kB)
+Downloading attrs-25.3.0-py3-none-any.whl (63 kB)
+Downloading bitarray-3.8.0-cp38-cp38-win_amd64.whl (149 kB)
+Downloading certifi-2025.11.12-py3-none-any.whl (159 kB)
+Downloading charset_normalizer-3.4.4-cp38-cp38-win_amd64.whl (106 kB)
+Downloading ckzg-2.1.5-cp38-cp38-win_amd64.whl (100 kB)
+Downloading eth_keyfile-0.8.1-py3-none-any.whl (7.5 kB)
+Downloading eth_keys-0.7.0-py3-none-any.whl (20 kB)
+Downloading eth_rlp-2.2.0-py3-none-any.whl (4.4 kB)
+Downloading frozenlist-1.5.0-cp38-cp38-win_amd64.whl (51 kB)
+Downloading idna-3.11-py3-none-any.whl (71 kB)
+Downloading multidict-6.1.0-cp38-cp38-win_amd64.whl (28 kB)
+Using cached regex-2024.11.6-cp38-cp38-win_amd64.whl (274 kB)
+Downloading rlp-4.1.0-py3-none-any.whl (19 kB)
+Downloading toolz-1.0.0-py3-none-any.whl (56 kB)
+Using cached urllib3-2.2.3-py3-none-any.whl (126 kB)
+Downloading yarl-1.15.2-cp38-cp38-win_amd64.whl (84 kB)
+Downloading propcache-0.2.0-cp38-cp38-win_amd64.whl (45 kB)
+Installing collected packages: pywin32, ckzg, bitarray, websockets, wcwidth, urllib3, typing_extensions, toolz, regex, pyunormalize, propcache, idna, hexbytes, frozenlist, eth-hash, charset_normalizer, 
+certifi, cbor2, attrs, async-timeout, aiohappyeyeballs, types-requests, requests, pydantic-core, prettytable, parsimonious, multidict, eth-typing, cytoolz, crytic-compile, annotated-types, aiosignal, yarl, pydantic, eth-utils, aiohttp, rlp, eth-keys, eth-abi, eth-rlp, eth-keyfile, eth-account, web3, slither-analyzer
+Successfully installed aiohappyeyeballs-2.4.4 aiohttp-3.10.11 aiosignal-1.3.1 annotated-types-0.7.0 async-timeout-5.0.1 attrs-25.3.0 bitarray-3.8.0 cbor2-5.6.5 certifi-2025.11.12 charset_normalizer-3.4.4 ckzg-2.1.5 crytic-compile-0.3.11 cytoolz-1.0.1 eth-abi-5.2.0 eth-account-0.13.7 eth-hash-0.7.1 eth-keyfile-0.8.1 eth-keys-0.7.0 eth-rlp-2.2.0 eth-typing-5.2.1 eth-utils-5.3.1 frozenlist-1.5.0 hexbytes-1.3.1 idna-3.11 multidict-6.1.0 parsimonious-0.10.0 prettytable-3.11.0 propcache-0.2.0 pydantic-2.10.6 pydantic-core-2.27.2 pyunormalize-17.0.0 pywin32-311 regex-2024.11.6 requests-2.32.4 rlp-4.1.0 slither-analyzer-0.11.3 toolz-1.0.0 types-requests-2.32.0.20241016 typing_extensions-4.13.2 urllib3-2.2.3 wcwidth-0.2.14 web3-7.14.0 websockets-13.1 yarl-1.15.2
+(slither-env) PS D:\angular\smart-contract-security-suite\server> node server.js
+[dotenv@17.2.3] injecting env (0) from .env -- tip: 🔄 add secrets lifecycle management: https://dotenvx.com/ops
+✅ API Key 已加载: sk-59e780bc3453...
+✅ 检测服务已启动: http://localhost:3000
+📡 可用接口：
+   - POST /api/detect   (Slither 检测)
+   - POST /api/generate (智能合约生成)
+   - POST /api/fix      (漏洞修复)
+   - POST /api/report   (生成报告)
+🧠 收到合约生成请求...
+✅ 合约生成成功
+📥 收到检测请求...
+🔍 正在使用 Slither 检测...
+📄 Slither 输出:
+ 'solc --version' running
+'solc D:\angular\smart-contract-security-suite\server\temp\Contract.sol --combined-json abi,ast,bin,bin-runtime,srcmap,srcmap-runtime,userdoc,devdoc,hashes --allow-paths .,D:\angular\smart-contract-security-suite\server\temp' running
+Compilation warnings/errors on D:\angular\smart-contract-security-suite\server\temp\Contract.sol:    
+Error: Expected pragma, import directive or contract/interface/library/struct/enum/constant/function/error definition.
+ --> Contract.sol:1:1:
+  |
+1 | ```solidity
+  | ^
+
+
+Traceback (most recent call last):
+  File "d:\angular\smart-contract-security-suite\server\slither-env\lib\site-packages\crytic_compile\platform\solc.py", line 581, in _run_solc
+    ret: Dict = json.loads(stdout)
+  File "D:\anaconda\lib\json\__init__.py", line 357, in loads
+    return _default_decoder.decode(s)
+  File "D:\anaconda\lib\json\decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "D:\anaconda\lib\json\decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\anaconda\lib\runpy.py", line 194, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "D:\anaconda\lib\runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "D:\angular\smart-contract-security-suite\server\slither-env\Scripts\slither.exe\__main__.py", line 7, in <module>
+  File "d:\angular\smart-contract-security-suite\server\slither-env\lib\site-packages\slither\__main__.py", line 776, in main
+    main_impl(all_detector_classes=detectors, all_printer_classes=printers)
+  File "d:\angular\smart-contract-security-suite\server\slither-env\lib\site-packages\slither\__main__.py", line 882, in main_impl
+    ) = process_all(filename, args, detector_classes, printer_classes)
+  File "d:\angular\smart-contract-security-suite\server\slither-env\lib\site-packages\slither\__main__.py", line 96, in process_all
+    compilations = compile_all(target, **vars(args))
+  File "d:\angular\smart-contract-security-suite\server\slither-env\lib\site-packages\crytic_compile\crytic_compile.py", line 722, in compile_all
+    compilations.append(CryticCompile(target, **kwargs))
+  File "d:\angular\smart-contract-security-suite\server\slither-env\lib\site-packages\crytic_compile\crytic_compile.py", line 211, in __init__
+    self._compile(**kwargs)
+  File "d:\angular\smart-contract-security-suite\server\slither-env\lib\site-packages\crytic_compile\crytic_compile.py", line 633, in _compile
+    self._platform.compile(self, **kwargs)
+  File "d:\angular\smart-contract-security-suite\server\slither-env\lib\site-packages\crytic_compile\platform\solc.py", line 150, in compile
+    targets_json = _get_targets_json(compilation_unit, self._target, **kwargs)
+  File "d:\angular\smart-contract-security-suite\server\slither-env\lib\site-packages\crytic_compile\platform\solc.py", line 279, in _get_targets_json
+    return _run_solc(
+  File "d:\angular\smart-contract-security-suite\server\slither-env\lib\site-packages\crytic_compile\platform\solc.py", line 585, in _run_solc
+    raise InvalidCompilation(f"Invalid solc compilation {stderr}")
+crytic_compile.platform.exceptions.InvalidCompilation: Invalid solc compilation Error: Expected pragma, import directive or contract/interface/library/struct/enum/constant/function/error definition.    
+ --> Contract.sol:1:1:
+  |
+1 | ```solidity
+  | ^
+
+
+
+❌ 读取报告失败: Error: 报告文件未生成
+    at D:\angular\smart-contract-security-suite\server\server.js:84:17
+    at ChildProcess.exithandler (node:child_process:421:5)
+    at ChildProcess.emit (node:events:518:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:304:5)
+🗑️ 已清理: Contract.sol
+📥 收到检测请求...
+🔍 正在使用 Slither 检测...
+📄 Slither 输出:
+ 'solc --version' running
+'solc D:\angular\smart-contract-security-suite\server\temp\Contract.sol --combined-json abi,ast,bin,bin-runtime,srcmap,srcmap-runtime,userdoc,devdoc,hashes --allow-paths .,D:\angular\smart-contract-security-suite\server\temp' running
+Compilation warnings/errors on D:\angular\smart-contract-security-suite\server\temp\Contract.sol:    
+Error: Expected identifier but got 'pragma'
+ --> Contract.sol:3:1:
+  |
+3 | pragma solidity ^0.8.0;
+  | ^^^^^^
+
+
+Traceback (most recent call last):
+  File "d:\angular\smart-contract-security-suite\server\slither-env\lib\site-packages\crytic_compile\platform\solc.py", line 581, in _run_solc
+    ret: Dict = json.loads(stdout)
+  File "D:\anaconda\lib\json\__init__.py", line 357, in loads
+    return _default_decoder.decode(s)
+  File "D:\anaconda\lib\json\decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "D:\anaconda\lib\json\decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\anaconda\lib\runpy.py", line 194, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "D:\anaconda\lib\runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "D:\angular\smart-contract-security-suite\server\slither-env\Scripts\slither.exe\__main__.py", line 7, in <module>
+  File "d:\angular\smart-contract-security-suite\server\slither-env\lib\site-packages\slither\__main__.py", line 776, in main
+    main_impl(all_detector_classes=detectors, all_printer_classes=printers)
+  File "d:\angular\smart-contract-security-suite\server\slither-env\lib\site-packages\slither\__main__.py", line 882, in main_impl
+    ) = process_all(filename, args, detector_classes, printer_classes)
+  File "d:\angular\smart-contract-security-suite\server\slither-env\lib\site-packages\slither\__main__.py", line 96, in process_all
+    compilations = compile_all(target, **vars(args))
+  File "d:\angular\smart-contract-security-suite\server\slither-env\lib\site-packages\crytic_compile\crytic_compile.py", line 722, in compile_all
+    compilations.append(CryticCompile(target, **kwargs))
+  File "d:\angular\smart-contract-security-suite\server\slither-env\lib\site-packages\crytic_compile\crytic_compile.py", line 211, in __init__
+    self._compile(**kwargs)
+  File "d:\angular\smart-contract-security-suite\server\slither-env\lib\site-packages\crytic_compile\crytic_compile.py", line 633, in _compile
+    self._platform.compile(self, **kwargs)
+  File "d:\angular\smart-contract-security-suite\server\slither-env\lib\site-packages\crytic_compile\platform\solc.py", line 150, in compile
+    targets_json = _get_targets_json(compilation_unit, self._target, **kwargs)
+  File "d:\angular\smart-contract-security-suite\server\slither-env\lib\site-packages\crytic_compile\platform\solc.py", line 279, in _get_targets_json
+    return _run_solc(
+  File "d:\angular\smart-contract-security-suite\server\slither-env\lib\site-packages\crytic_compile\crytic_compile.platform.exceptions.InvalidCompilation: Invalid solc compilation Error: Expected identifier but got 'pragma'ted identifier but got 'pragma'
+ --> Contract.sol:3:1:
+  |
+3 | pragma solidity ^0.8.0;
+  | ^^^^^^
+
+
+
+❌ 读取报告失败: Error: 报告文件未生成
+    at ChildProcess.exithandler (node:child_process:421:5)
+    at ChildProcess.emit (node:events:518:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:304:5)
+🗑️ 已清理: Contract.sol
+(slither-env) PS D:\angular\smart-contract-security-suite\server> node server.js
+[dotenv@17.2.3] injecting env (0) from .env -- tip: ⚙️  write to custom object with { proces
+sEnv: myObject }
+✅ API Key 已加载: sk-59e780bc3453...
+✅ 检测服务已启动: http://localhost:3000
+📡 可用接口：
+   - POST /api/detect   (Slither 检测)
+   - POST /api/generate (智能合约生成)
+   - POST /api/fix      (漏洞修复)
+   - POST /api/report   (生成报告)
+🧠 收到合约生成请求...
+✅ 合约生成成功
+(slither-env) PS D:\angular\smart-contract-security-suite\server> node server.js
+[dotenv@17.2.3] injecting env (0) from .env -- tip: 🔐 prevent committing .env to code: https://dotenvx.com/precommit
+✅ API Key 已加载: sk-59e780bc3453...
+✅ 检测服务已启动: http://localhost:3000
+📡 可用接口：
+   - POST /api/detect   (Slither 检测)
+   - POST /api/generate (智能合约生成)
+   - POST /api/fix      (漏洞修复)
+   - POST /api/report   (生成报告)
+🧠 收到合约生成请求...
+✅ 合约生成成功
+📥 收到检测请求...
+🔍 正在使用 Slither 检测...
+📄 Slither 输出:
+ 'solc --version' running
+'solc D:\angular\smart-contract-security-suite\server\temp\Contract.sol --combined-json abi,ast,bin,bin-runtime,srcmap,srcmap-runtime,userdoc,devdoc,hashes --allow-paths .,D:\angular\smart-contract-security-suite\server\temp' running
+
+Contract locking ether found:
+        Contract SimpleStorage (Contract.sol#8-96) has payable functions:
+         - SimpleStorage.receive() (Contract.sol#89)
+         - SimpleStorage.fallback() (Contract.sol#94)
+        But does not have a function to withdraw the ether
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#contracts-that-lock-ether
+
+Version constraint ^0.8.0 contains known severe issues (https://solidity.readthedocs.io/en/latest/bugs.html)
+        - FullInlinerNonExpressionSplitArgumentEvaluationOrder
+        - MissingSideEffectsOnSelectorAccess
+        - AbiReencodingHeadOverflowWithStaticArrayCleanup
+        - DirtyBytesArrayToStorage
+        - DataLocationChangeInInternalOverride
+        - NestedCalldataArrayAbiReencodingSizeValidation
+        - SignedImmutables
+        - ABIDecodeTwoDimensionalArrayMemory
+        - KeccakCaching.
+It is used by:
+        - ^0.8.0 (Contract.sol#2)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#incorrect-versions-of-solidity
+
+Parameter SimpleStorage.setData(uint256)._data (Contract.sol#37) is not in mixedCase        
+Parameter SimpleStorage.setString(string)._string (Contract.sol#54) is not in mixedCase     
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#conformance-to-solidity-naming-conventions
+
+SimpleStorage.owner (Contract.sol#16) should be immutable
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#state-variables-that-could-be-declared-immutable
+D:\angular\smart-contract-security-suite\server\temp\Contract.sol analyzed (1 contracts with 100 detectors), 5 result(s) found
+
+✅ 检测完成，发现 5 个问题
+🗑️ 已清理: Contract.sol
+🗑️ 已清理: report.json
+📊 生成报告请求...
+🧠 收到合约生成请求...
+✅ 合约生成成功
+🧠 收到合约生成请求...
+✅ 合约生成成功
+📥 收到检测请求...
+🔍 正在使用 Slither 检测...
+📄 Slither 输出:
+ 'solc --version' running
+'solc D:\angular\smart-contract-security-suite\server\temp\Contract.sol --combined-json abi,ast,bin,bin-runtime,srcmap,srcmap-runtime,userdoc,devdoc,hashes --allow-paths .,D:\angular\smart-contract-security-suite\server\temp' running
+
+Reentrancy in SimpleStorage.withdrawEther(uint256,address) (Contract.sol#99-108):
+        External calls:
+        - (success,None) = to.call{value: amount}() (Contract.sol#104)
+        Event emitted after the call(s):
+        - EtherWithdrawn(amount,to) (Contract.sol#107)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#reentrancy-vulnerabilities-3
+
+Version constraint ^0.8.19 contains known severe issues (https://solidity.readthedocs.io/en/latest/bugs.html)
+        - VerbatimInvalidDeduplication
+        - FullInlinerNonExpressionSplitArgumentEvaluationOrder
+        - MissingSideEffectsOnSelectorAccess.
+It is used by:
+        - ^0.8.19 (Contract.sol#2)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#incorrect-versions-of-solidity
+
+Low level call in SimpleStorage.withdrawEther(uint256,address) (Contract.sol#99-108):       
+        - (success,None) = to.call{value: amount}() (Contract.sol#104)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#low-level-calls    
+D:\angular\smart-contract-security-suite\server\temp\Contract.sol analyzed (1 contracts with 100 detectors), 3 result(s) found
+
+✅ 检测完成，发现 3 个问题
+🗑️ 已清理: Contract.sol
+🗑️ 已清理: report.json
+🧠 收到合约生成请求...
+✅ 合约生成成功
+📥 收到检测请求...
+🔍 正在使用 Slither 检测...
+📄 Slither 输出:
+ 'solc --version' running
+'solc D:\angular\smart-contract-security-suite\server\temp\Contract.sol --combined-json abi,ast,bin,bin-runtime,srcmap,srcmap-runtime,userdoc,devdoc,hashes --allow-paths .,D:\angular\smart-contract-security-suite\server\temp' running
+
+Version constraint ^0.8.0 contains known severe issues (https://solidity.readthedocs.io/en/latest/bugs.html)
+        - FullInlinerNonExpressionSplitArgumentEvaluationOrder
+        - MissingSideEffectsOnSelectorAccess
+        - AbiReencodingHeadOverflowWithStaticArrayCleanup
+        - DirtyBytesArrayToStorage
+        - DataLocationChangeInInternalOverride
+        - NestedCalldataArrayAbiReencodingSizeValidation
+        - SignedImmutables
+        - ABIDecodeTwoDimensionalArrayMemory
+        - KeccakCaching.
+It is used by:
+        - ^0.8.0 (Contract.sol#2)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#incorrect-versions-of-solidity
+
+Parameter SimpleStorage.setData(uint256)._data (Contract.sol#37) is not in mixedCase        
+Parameter SimpleStorage.setString(string)._string (Contract.sol#54) is not in mixedCase     
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#conformance-to-solidity-naming-conventions
+
+SimpleStorage.owner (Contract.sol#16) should be immutable
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#state-variables-that-could-be-declared-immutable
+D:\angular\smart-contract-security-suite\server\temp\Contract.sol analyzed (1 contracts with 100 detectors), 4 result(s) found
+
+✅ 检测完成，发现 4 个问题
+🗑️ 已清理: Contract.sol
+🗑️ 已清理: report.json
+📊 生成报告请求...
+🧠 收到合约生成请求...
+✅ 合约生成成功
+🧠 收到合约生成请求...
+✅ 合约生成成功
+📥 收到检测请求...
+🔍 正在使用 Slither 检测...
+📄 Slither 输出:
+ 'solc --version' running
+'solc D:\angular\smart-contract-security-suite\server\temp\Contract.sol --combined-json abi,ast,bin,bin-runtime,srcmap,srcmap-runtime,userdoc,devdoc,hashes --allow-paths .,D:\angular\smart-contract-security-suite\server\temp' running
+Compilation warnings/errors on D:\angular\smart-contract-security-suite\server\temp\Contract.sol:
+Error: Source file requires different compiler version (current compiler is 0.8.20+commit.a1b79de6.Windows.msvc) - note that nightly builds are considered to be strictly less than the 
+released version
+ --> Contract.sol:2:1:
+  |
+2 | pragma solidity ^0.8.25;
+  | ^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+Traceback (most recent call last):
+  File "d:\angular\smart-contract-security-suite\server\slither-env\lib\site-packages\crytic_compile\platform\solc.py", line 581, in _run_solc
+    ret: Dict = json.loads(stdout)
+  File "D:\anaconda\lib\json\__init__.py", line 357, in loads
+    return _default_decoder.decode(s)
+  File "D:\anaconda\lib\json\decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "D:\anaconda\lib\json\decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\anaconda\lib\runpy.py", line 194, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "D:\anaconda\lib\runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "D:\angular\smart-contract-security-suite\server\slither-env\Scripts\slither.exe\__main__.py", line 7, in <module>
+  File "d:\angular\smart-contract-security-suite\server\slither-env\lib\site-packages\slither\__main__.py", line 776, in main
+    main_impl(all_detector_classes=detectors, all_printer_classes=printers)
+  File "d:\angular\smart-contract-security-suite\server\slither-env\lib\site-packages\slither\__main__.py", line 882, in main_impl
+    ) = process_all(filename, args, detector_classes, printer_classes)
+  File "d:\angular\smart-contract-security-suite\server\slither-env\lib\site-packages\slither\__main__.py", line 96, in process_all
+    compilations = compile_all(target, **vars(args))
+  File "d:\angular\smart-contract-security-suite\server\slither-env\lib\site-packages\crytic_compile\crytic_compile.py", line 722, in compile_all
+    compilations.append(CryticCompile(target, **kwargs))
+  File "d:\angular\smart-contract-security-suite\server\slither-env\lib\site-packages\crytic_compile\crytic_compile.py", line 211, in __init__
+    self._compile(**kwargs)
+  File "d:\angular\smart-contract-security-suite\server\slither-env\lib\site-packages\crytic_compile\crytic_compile.py", line 633, in _compile
+    self._platform.compile(self, **kwargs)
+  File "d:\angular\smart-contract-security-suite\server\slither-env\lib\site-packages\crytic_compile\platform\solc.py", line 150, in compile
+    targets_json = _get_targets_json(compilation_unit, self._target, **kwargs)
+  File "d:\angular\smart-contract-security-suite\server\slither-env\lib\site-packages\crytic_compile\platform\solc.py", line 279, in _get_targets_json
+    return _run_solc(
+  File "d:\angular\smart-contract-security-suite\server\slither-env\lib\site-packages\crytic_compile\platform\solc.py", line 585, in _run_solc
+    raise InvalidCompilation(f"Invalid solc compilation {stderr}")
+crytic_compile.platform.exceptions.InvalidCompilation: Invalid solc compilation Error: Source file requires different compiler version (current compiler is 0.8.20+commit.a1b79de6.Windows.msvc) - note that nightly builds are considered to be strictly less than the released version
+ --> Contract.sol:2:1:
+  |
+2 | pragma solidity ^0.8.25;
+  | ^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+
+❌ 读取报告失败: Error: 报告文件未生成
+    at D:\angular\smart-contract-security-suite\server\server.js:84:17
+    at ChildProcess.exithandler (node:child_process:421:5)
+    at ChildProcess.emit (node:events:518:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:304:5)
+🗑️ 已清理: Contract.sol
+📥 收到检测请求...
+🔍 正在使用 Slither 检测...
+📄 Slither 输出:
+ 'solc --version' running
+'solc D:\angular\smart-contract-security-suite\server\temp\Contract.sol --combined-json abi,ast,bin,bin-runtime,srcmap,srcmap-runtime,userdoc,devdoc,hashes --allow-paths .,D:\angular\smart-contract-security-suite\server\temp' running
+
+Version constraint ^0.8.20 contains known severe issues (https://solidity.readthedocs.io/en/latest/bugs.html)
+        - VerbatimInvalidDeduplication
+        - FullInlinerNonExpressionSplitArgumentEvaluationOrder
+        - MissingSideEffectsOnSelectorAccess.
+It is used by:
+        - ^0.8.20 (Contract.sol#2)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#incorrect-versions-of-solidity
+D:\angular\smart-contract-security-suite\server\temp\Contract.sol analyzed (1 contracts with 100 detectors), 1 result(s) found
+
+✅ 检测完成，发现 1 个问题
+🗑️ 已清理: Contract.sol
+🗑️ 已清理: report.json

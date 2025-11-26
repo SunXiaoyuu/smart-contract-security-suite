@@ -1,39 +1,87 @@
 <mat-card>
   <h2>🧩 智能合约漏洞修补模块</h2>
 
+  <!-- 合约代码输入 -->
   <mat-form-field appearance="outline" class="w-full">
+    <mat-label>智能合约代码</mat-label>
     <textarea
       matInput
-      placeholder="粘贴智能合约代码..."
+      placeholder="粘贴需要修补的智能合约代码..."
       [(ngModel)]="code"
-      rows="6">
+      rows="8">
     </textarea>
   </mat-form-field>
 
+  <!-- 审计报告输入 -->
   <mat-form-field appearance="outline" class="w-full">
+    <mat-label>审计报告</mat-label>
     <textarea
       matInput
-      placeholder="粘贴漏洞审计报告..."
+      placeholder="粘贴漏洞审计报告（可以是检测模块生成的报告）..."
       [(ngModel)]="reports"
       rows="6">
     </textarea>
   </mat-form-field>
 
-  <button mat-raised-button color="accent" (click)="applySuggestion()">开始分析</button>
+  <div class="button-group">
+    <!-- 开始分析按钮 -->
+    <button 
+      mat-raised-button 
+      color="primary" 
+      (click)="applySuggestion()"
+      [disabled]="isAnalyzing"
+      style="margin-right: 10px;">
+      <mat-spinner *ngIf="isAnalyzing" diameter="20" style="display: inline-block; margin-right: 8px;"></mat-spinner>
+      {{ isAnalyzing ? '分析中...' : '🔍 开始分析' }}
+    </button>
+
+    <!-- 开始修补按钮 -->
+    <button 
+      mat-raised-button 
+      color="accent" 
+      (click)="applyPatch()"
+      [disabled]="isRepairing">
+      <mat-spinner *ngIf="isRepairing" diameter="20" style="display: inline-block; margin-right: 8px;"></mat-spinner>
+      {{ isRepairing ? '修补中...' : '🔧 开始修补' }}
+    </button>
+
+    <button 
+      mat-raised-button 
+      color="warn" 
+      (click)="goToReDetection()"
+      [disabled]="!repairedCode">
+      下一步：再次检测 →
+    </button>
+  </div>
+
+
+  <!-- 修补建议显示 -->
   <div *ngIf="patchSuggestions" style="margin-top: 20px;">
-    <h3>修补意见：</h3>
+    <h3>💡 修补建议</h3>
     <mat-list>
       <mat-list-item *ngFor="let v of patchSuggestions.suggestion">
-        <b>{{ v.num }}</b> 第{{v.line}}行：{{ v.sug }}
+        <div style="display: flex; align-items: flex-start; width: 100%;">
+          <b style="color: #1976d2; margin-right: 10px;">{{ v.num }}.</b>
+          <div>
+            <span *ngIf="v.line !== '-'" style="color: #f57c00; font-weight: bold;">
+              第 {{ v.line }} 行：
+            </span>
+            {{ v.sug }}
+          </div>
+        </div>
       </mat-list-item>
     </mat-list>
   </div>
 
-  <button mat-raised-button color="accent" (click)="applyPatch()">开始修补</button>
-
+  <!-- 修补结果显示 -->
   <div *ngIf="repairedCode" style="margin-top: 20px;">
-    <h3>修补结果：</h3>
-    <pre *ngIf="repairedCode">{{ repairedCode }}</pre>
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <h3>✅ 修补结果</h3>
+      <button mat-stroked-button color="primary" (click)="copyRepairedCode()">
+        📋 复制代码
+      </button>
+    </div>
+    <pre style="background: #f5f5f5; padding: 15px; border-radius: 8px; overflow-x: auto;">{{ repairedCode }}</pre>
   </div>
   
 </mat-card>
