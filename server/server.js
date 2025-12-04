@@ -4,15 +4,38 @@ const { exec } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 const axios = require('axios');
-const solc = require('solc');  // 引入 solc 编译器
+const solc = require('solc');
 const app = express();
 const PORT = 3000;
+
+// ==================== CORS 配置 ====================
+const corsOptions = {
+  origin: 'http://localhost:4200',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+  credentials: true,
+  optionsSuccessStatus: 200
+};
+
+// 启用 CORS 中间件
+app.use(cors(corsOptions));
+
+// 处理预检请求 - 修复：使用具体路由而不是通配符
+app.options('/api/blockchain/proxy', cors(corsOptions));
+app.options('/api/blockchain/health', cors(corsOptions));
+app.options('/api/generate', cors(corsOptions));
+app.options('/api/detect', cors(corsOptions));
+app.options('/api/report', cors(corsOptions));
+app.options('/api/compile', cors(corsOptions));
+app.options('/api/fix', cors(corsOptions));
+app.options('/api/test-key', cors(corsOptions));
 
 // ==================== Solidity 编译服务 ====================
 class SolidityCompiler {
   constructor() {
     this.solcVersion = '0.8.20';
   }
+
   /**
    * 编译Solidity代码
    */
@@ -32,7 +55,7 @@ class SolidityCompiler {
           settings: {
             outputSelection: {
               '*': {
-                '*': ['*'] // 获取所有输出信息
+                '*': ['*']
               }
             },
             optimizer: {
@@ -62,7 +85,7 @@ class SolidityCompiler {
           throw new Error('未找到编译后的合约，请检查合约名称和代码格式');
         }
 
-        // 获取第一个合约（通常是我们想要部署的合约）
+        // 获取第一个合约
         const contractKey = Object.keys(contracts)[0];
         const contract = contracts[contractKey];
 
@@ -113,7 +136,6 @@ class SolidityCompiler {
       throw new Error('合约代码不能为空');
     }
 
-    // 检查是否包含必要的Solidity语法
     if (!code.includes('pragma solidity')) {
       throw new Error('合约代码必须包含 pragma solidity 声明');
     }
@@ -134,27 +156,20 @@ const cleanCodeBlock = (rawCode) => {
   if (!rawCode) return '';
 
   let code = rawCode
-    .replace(/```solidity[\s\S]*?\n/g, '') // 去除 Markdown 开头
-    .replace(/```/g, '')                   // 去除 Markdown 结尾
+    .replace(/```solidity[\s\S]*?\n/g, '')
+    .replace(/```/g, '')
     .trim();
 
-  // 1. 修复版本号 (强制使用 0.8.20)
+  // 修复版本号
   code = code.replace(/pragma solidity\s+[\^]?\d+\.\d+\.\d+;/, 'pragma solidity ^0.8.20;');
 
-  // 2. 🔧 新增：修复非法的 @security 注释标签
-  // 将 "@security" 替换为 "Security Note:"，这样编译器就会把它当作普通注释处理
+  // 修复非法的 @security 注释标签
   code = code.replace(/@security/g, 'Security Note:');
 
   return code;
 };
 
-// 启用 CORS
-app.use(cors({
-  origin: 'http://localhost:4200',
-  methods: ['GET', 'POST'],
-  credentials: true
-}));
-
+// 启用 JSON 解析中间件
 app.use(express.json({ limit: '10mb' }));
 
 // ==================== 直接硬编码 API Key ====================
@@ -175,6 +190,138 @@ const cleanTempFiles = (filePaths) => {
     }
   });
 };
+
+// ==================== 可用的区块链节点配置 ====================
+const BLOCKCHAIN_NODES = {
+  sepolia: [
+    'https://eth-sepolia.g.alchemy.com/v2/demo',
+    'https://sepolia.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161',
+    'https://rpc.sepolia.org',
+    'https://rpc2.sepolia.org',
+    'https://ethereum-sepolia-rpc.publicnode.com'
+  ],
+  mainnet: [
+    'https://eth-mainnet.g.alchemy.com/v2/demo',
+    'https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161',
+    'https://cloudflare-eth.com'
+  ]
+};
+
+// ==================== 区块链节点代理接口 ====================
+app.post('/api/blockchain/proxy', async (req, res) => {
+  console.log('📡 收到区块链节点代理请求...');
+
+  const { method, params, id = 1, network = 'sepolia' } = req.body;
+
+  // 获取可用的节点列表
+  const availableNodes = BLOCKCHAIN_NODES[network] || BLOCKCHAIN_NODES.sepolia;
+
+  let lastError = null;
+
+  // 尝试所有可用的节点
+  for (const targetUrl of availableNodes) {
+    try {
+      console.log(`🔄 尝试节点: ${targetUrl.substring(0, 50)}...`);
+      console.log('🔄 转发请求到区块链节点:', { method, params });
+
+      const response = await axios.post(targetUrl, {
+        jsonrpc: '2.0',
+        id: id,
+        method: method,
+        params: params || []
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        timeout: 15000
+      });
+
+      console.log('✅ 节点响应成功:', method);
+
+      // 设置 CORS 头部
+      res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
+      res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+      res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+      return res.json(response.data);
+
+    } catch (error) {
+      lastError = error;
+      console.warn(`⚠️ 节点 ${targetUrl.substring(0, 30)}... 失败:`, error.message);
+
+      // 如果是 403 错误，继续尝试下一个节点
+      if (error.response && error.response.status === 403) {
+        console.log('🔄 BlastAPI 已停用，尝试下一个节点...');
+        continue;
+      }
+
+      // 如果是网络错误，也继续尝试
+      if (error.code === 'ECONNREFUSED' || error.code === 'ETIMEDOUT') {
+        continue;
+      }
+    }
+  }
+
+  // 所有节点都失败
+  console.error('❌ 所有节点代理请求都失败:', lastError?.message);
+
+  // 错误响应也设置 CORS 头部
+  res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+  res.status(500).json({
+    jsonrpc: "2.0",
+    id: id,
+    error: {
+      code: -32000,
+      message: '所有区块链节点都请求失败。请检查网络连接或尝试使用其他 RPC 节点。最后错误: ' + (lastError?.message || '未知错误')
+    }
+  });
+});
+
+// ==================== 节点健康检查接口 ====================
+app.get('/api/blockchain/health', async (req, res) => {
+  console.log('🏥 区块链节点健康检查...');
+
+  const healthResults = {};
+
+  for (const [network, nodes] of Object.entries(BLOCKCHAIN_NODES)) {
+    healthResults[network] = [];
+
+    for (const nodeUrl of nodes) {
+      try {
+        const startTime = Date.now();
+        const response = await axios.post(nodeUrl, {
+          jsonrpc: '2.0',
+          id: 1,
+          method: 'eth_blockNumber',
+          params: []
+        }, {
+          timeout: 10000
+        });
+
+        const responseTime = Date.now() - startTime;
+        healthResults[network].push({
+          url: nodeUrl,
+          status: 'healthy',
+          responseTime: responseTime,
+          blockNumber: response.data.result
+        });
+
+      } catch (error) {
+        healthResults[network].push({
+          url: nodeUrl,
+          status: 'unhealthy',
+          error: error.message
+        });
+      }
+    }
+  }
+
+  res.json(healthResults);
+});
 
 // ==================== 智能合约生成接口 ====================
 app.post('/api/generate', async (req, res) => {
@@ -360,18 +507,16 @@ app.post('/api/detect', async (req, res) => {
 
       console.log(`✅ 检测完成，发现 ${vulnerabilities.length} 个问题`);
 
-      // 修复：改进漏洞映射和统计逻辑
+      // 格式化漏洞信息
       const formattedVulnerabilities = vulnerabilities.map(v => {
-        // 更准确的严重等级映射
         const severityMap = {
           'High': '高',
           'Medium': '中',
           'Low': '低',
           'Informational': '信息',
-          'Optimization': '优化'  // 添加优化类别
+          'Optimization': '优化'
         };
 
-        // 确保严重等级映射正确
         const severity = severityMap[v.impact] || '中';
 
         return {
@@ -384,14 +529,12 @@ app.post('/api/detect', async (req, res) => {
         };
       });
 
-      // 修复：重新计算各等级漏洞数量，确保一致性
+      // 计算各等级漏洞数量
       const highCount = formattedVulnerabilities.filter(v => v.severity === '高').length;
       const mediumCount = formattedVulnerabilities.filter(v => v.severity === '中').length;
       const lowCount = formattedVulnerabilities.filter(v => v.severity === '低').length;
       const infoCount = formattedVulnerabilities.filter(v => v.severity === '信息').length;
       const optCount = formattedVulnerabilities.filter(v => v.severity === '优化').length;
-
-      // 总问题数应该是所有等级的总和
       const totalCount = highCount + mediumCount + lowCount + infoCount + optCount;
 
       console.log('📊 漏洞统计详情:', {
@@ -414,7 +557,7 @@ app.post('/api/detect', async (req, res) => {
           abi: compileResult.abi
         },
         summary: {
-          total: totalCount,  // 使用计算后的总数
+          total: totalCount,
           high: highCount,
           medium: mediumCount,
           low: lowCount,
@@ -682,11 +825,17 @@ app.get('/api/test-key', async (req, res) => {
 // ==================== 启动服务器 ====================
 app.listen(PORT, () => {
   console.log(`✅ 检测服务已启动: http://localhost:${PORT}`);
+  console.log(`🌐 CORS 已配置，允许来源: http://localhost:4200`);
   console.log(`📡 可用接口：`);
-  console.log(`   - POST /api/detect   (Slither 检测)`);
+  console.log(`   - POST /api/blockchain/proxy (区块链代理)`);
+  console.log(`   - GET  /api/blockchain/health (节点健康检查)`);
   console.log(`   - POST /api/generate (智能合约生成)`);
+  console.log(`   - POST /api/detect   (Slither 检测)`);
   console.log(`   - POST /api/fix      (漏洞修复)`);
   console.log(`   - POST /api/report   (生成报告)`);
   console.log(`   - GET  /api/test-key (测试 API Key)`);
   console.log(`🔑 API Key: ${DEEPSEEK_API_KEY.substring(0, 10)}...`);
+  console.log(`🌐 配置的区块链节点:`);
+  console.log(`   - Sepolia: ${BLOCKCHAIN_NODES.sepolia.length} 个可用节点`);
+  console.log(`   - Mainnet: ${BLOCKCHAIN_NODES.mainnet.length} 个可用节点`);
 });

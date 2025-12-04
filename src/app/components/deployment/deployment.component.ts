@@ -16,6 +16,7 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { Subscription } from 'rxjs';
+import { ethers } from 'ethers';
 
 // ================ 接口定义 ================
 interface CompileInfo {
@@ -49,18 +50,18 @@ export interface DeployResult {
   error?: string;
 }
 
-// 测试网配置
+// 测试网配置 - 修改 RPC URL 使用后端代理
 export const TESTNET_CONFIGS = {
   sepolia: {
     name: 'Sepolia Testnet',
-    rpcUrl: 'https://eth-sepolia.public.blastapi.io',
+    rpcUrl: 'http://localhost:3000/api/blockchain/proxy',
     chainId: 11155111,
     explorer: 'https://sepolia.etherscan.io',
     currency: 'ETH'
   },
   mumbai: {
     name: 'Polygon Mumbai',
-    rpcUrl: 'https://polygon-mumbai-bor.publicnode.com',
+    rpcUrl: 'http://localhost:3000/api/blockchain/proxy',
     chainId: 80001,
     explorer: 'https://mumbai.polygonscan.com',
     currency: 'MATIC'
@@ -87,7 +88,8 @@ export const TESTNET_CONFIGS = {
     MatSelectModule
   ],
   templateUrl: './deployment.component.html',
-  styleUrls: ['./deployment.component.css']
+  styleUrls: ['./deployment.component.css'],
+  providers: [{ provide: 'REQUEST', useValue: null }, { provide: 'RESPONSE', useValue: null }]
 })
 export class DeploymentComponent implements OnInit, OnDestroy {
   TESTNET_CONFIGS = TESTNET_CONFIGS;
@@ -97,8 +99,8 @@ export class DeploymentComponent implements OnInit, OnDestroy {
   deployConfig: DeployConfig = {
     testnet: 'sepolia',
     privateKey: '',
-    gasLimit: 3000000,
-    gasPrice: '30'
+    gasLimit: 8000000000, // 增加到500万Gas
+    gasPrice: '5000' // 30 gwei
   };
 
   // 工作流状态
@@ -118,7 +120,8 @@ export class DeploymentComponent implements OnInit, OnDestroy {
 
   constructor(
     private snackBar: MatSnackBar,
-    private workflowData: WorkflowDataService
+    private workflowData: WorkflowDataService,
+    private http: HttpClient
   ) {}
 
   ngOnInit() {
@@ -148,7 +151,7 @@ export class DeploymentComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * 执行合约部署
+   * 执行合约部署 - 使用后端代理
    */
   async deployContract() {
     if (!this.canDeploy) {
@@ -240,7 +243,7 @@ export class DeploymentComponent implements OnInit, OnDestroy {
 
   /**
    * 验证私钥格式
-
+   */
   private isValidPrivateKey(privateKey: string): { isValid: boolean; error?: string } {
     if (!privateKey || typeof privateKey !== 'string') {
       return { isValid: false, error: '私钥不能为空' };
@@ -264,115 +267,143 @@ export class DeploymentComponent implements OnInit, OnDestroy {
     }
 
     return { isValid: true };
-  }*/
-
-  private isValidPrivateKey(privateKey: string): { isValid: boolean; error?: string } {
-    return { isValid: true };
   }
+
   /**
-   * 实际部署逻辑
+   * 实际部署逻辑 - 使用自定义提供者通过后端代理
    */
   private async executeDeployment(deploymentData: CompileInfo): Promise<DeployResult> {
     const testnet = this.TESTNET_CONFIGS[this.deployConfig.testnet];
 
     try {
-      console.log('🌐 连接到测试网:', testnet.name);
+      // 验证私钥可以创建钱包
+      let wallet: ethers.Wallet;
+      try {
+        wallet = new ethers.Wallet(this.deployConfig.privateKey);
+        console.log('✅ 私钥有效,钱包地址:', wallet.address);
+      } catch (error) {
+        return {
+          success: false,
+          error: '私钥无效,无法创建钱包: ' + (error instanceof Error ? error.message : String(error))
+        };
+      }
 
-      // 动态导入 ethers v6
-      const { ethers } = await import('ethers');
+      // 创建自定义提供者，通过后端代理
+      const provider = this.createProxyProvider(testnet.rpcUrl);
 
-      this.deploymentSteps.connecting = true;
-      const provider = new ethers.JsonRpcProvider(testnet.rpcUrl);
-      const wallet = new ethers.Wallet(this.deployConfig.privateKey, provider);
-
-      console.log('👤 部署者地址:', wallet.address);
-
-      // 检查网络连接
-      const network = await provider.getNetwork();
-      console.log('🔗 网络信息:', {
-        chainId: network.chainId,
-        name: network.name
-      });
+      // 连接钱包到提供者
+      const connectedWallet = wallet.connect(provider);
 
       // 检查账户余额
-      this.deploymentSteps.estimating = true;
       const balance = await provider.getBalance(wallet.address);
-      const balanceInEth = ethers.formatEther(balance);
-      console.log('💰 账户余额:', balanceInEth, testnet.currency);
+      console.log('💰 账户余额:', ethers.formatEther(balance), 'ETH');
 
-      if (balance < ethers.parseEther('0.001')) {
-        throw new Error(`账户余额不足，当前余额: ${balanceInEth} ${testnet.currency}，需要至少 0.001 ${testnet.currency}`);
+      if (balance === 0n) {
+        return {
+          success: false,
+          error: '账户余额为0,请先充值测试币'
+        };
       }
+
+      // 获取当前 Gas 价格
+      const feeData = await provider.getFeeData();
+      const gasPrice = feeData.gasPrice || ethers.parseUnits(this.deployConfig.gasPrice || '30', 'gwei');
+      console.log('⛽ 当前 Gas 价格:', ethers.formatUnits(gasPrice, 'gwei'), 'gwei');
 
       // 创建合约工厂
-      const factory = new ethers.ContractFactory(deploymentData.abi, deploymentData.bytecode, wallet);
+      const factory = new ethers.ContractFactory(
+        deploymentData.abi,
+        deploymentData.bytecode,
+        connectedWallet
+      );
 
       // 估算 Gas
+      this.deploymentSteps.estimating = true;
+      let estimatedGas;
       try {
         const deployTransaction = await factory.getDeployTransaction();
-        const estimatedGas = await provider.estimateGas(deployTransaction);
-        console.log('⛽ 估算Gas:', estimatedGas.toString());
-
-        // 如果估算的Gas大于设置的限制，更新Gas限制
-        if (estimatedGas > BigInt(this.deployConfig.gasLimit || 3000000)) {
-          this.deployConfig.gasLimit = Number(estimatedGas) + 50000;
-          console.log('🔧 更新Gas限制为:', this.deployConfig.gasLimit);
-        }
-      } catch (estimateError) {
-        console.warn('⚠️ Gas估算失败，使用默认Gas限制:', estimateError);
+        estimatedGas = await provider.estimateGas(deployTransaction);
+        console.log('📊 估算 Gas:', estimatedGas.toString());
+      } catch (e) {
+        console.warn('⚠️ Gas 估算失败,使用默认值:', e instanceof Error ? e.message : String(e));
+        estimatedGas = BigInt(this.deployConfig.gasLimit || 5000000);
       }
+
+      // 增加 50% 的安全余量
+      const gasLimit = estimatedGas * 150n / 100n;
+      console.log('🔧 最终 Gas 设置:', {
+        gasLimit: gasLimit.toString(),
+        gasPrice: ethers.formatUnits(gasPrice, 'gwei') + ' gwei'
+      });
 
       // 执行部署
       this.deploymentSteps.deploying = true;
-      console.log('🏭 开始部署合约...');
-
       const contract = await factory.deploy({
-        gasLimit: this.deployConfig.gasLimit,
-        gasPrice: ethers.parseUnits(this.deployConfig.gasPrice || '30', 'gwei')
+        gasLimit: gasLimit,
+        gasPrice: gasPrice
       });
 
-      console.log('📝 部署交易已发送');
+      console.log('📤 部署交易哈希:', contract.deploymentTransaction()?.hash);
 
+      // 等待确认
       this.deploymentSteps.confirming = true;
-      const deploymentTransaction = contract.deploymentTransaction();
+      const receipt = await contract.deploymentTransaction()?.wait();
+      const address = await contract.getAddress();
 
-      if (!deploymentTransaction) {
-        throw new Error('部署交易创建失败');
+      if (receipt?.status === 1) {
+        return {
+          success: true,
+          contractAddress: address,
+          transactionHash: receipt.hash,
+          blockNumber: receipt.blockNumber,
+          gasUsed: receipt.gasUsed?.toString()
+        };
+      } else {
+        throw new Error(`交易失败，状态: ${receipt?.status}`);
       }
-
-      console.log('🔍 交易哈希:', deploymentTransaction.hash);
-
-      // 等待交易确认
-      const receipt = await deploymentTransaction.wait();
-
-      if (!receipt) {
-        throw new Error('未收到交易收据');
-      }
-
-      const contractAddress = await contract.getAddress();
-
-      console.log('✅ 部署成功!', {
-        contractAddress,
-        transactionHash: receipt.hash,
-        blockNumber: receipt.blockNumber,
-        gasUsed: receipt.gasUsed?.toString()
-      });
-
-      return {
-        success: true,
-        contractAddress,
-        transactionHash: receipt.hash,
-        blockNumber: receipt.blockNumber,
-        gasUsed: receipt.gasUsed?.toString()
-      };
 
     } catch (error: any) {
-      console.error('❌ 部署执行失败:', error);
+      console.error('❌ 部署失败:', error);
       return {
         success: false,
         error: this.getFriendlyErrorMessage(error)
       };
     }
+  }
+
+  /**
+   * 创建通过后端代理的自定义提供者
+   */
+  private createProxyProvider(proxyUrl: string): ethers.JsonRpcProvider {
+    // 创建自定义提供者
+    const provider = new ethers.JsonRpcProvider(proxyUrl);
+
+    // 重写发送方法以使用后端代理
+    const originalSend = provider.send.bind(provider);
+
+    provider.send = async (method: string, params: any[]): Promise<any> => {
+      console.log(`🔄 通过代理发送请求: ${method}`, params);
+
+      try {
+        const response = await this.http.post<any>(proxyUrl, {
+          jsonrpc: '2.0',
+          id: 1,
+          method: method,
+          params: params
+        }).toPromise();
+
+        if (response.error) {
+          throw new Error(`RPC错误: ${response.error.message}`);
+        }
+
+        return response.result;
+      } catch (error) {
+        console.error('❌ 代理请求失败:', error);
+        throw error;
+      }
+    };
+
+    return provider;
   }
 
   /**
@@ -434,7 +465,7 @@ export class DeploymentComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * 重置部署步骤状态 - 修复类型安全
+   * 重置部署步骤状态
    */
   private resetDeploymentSteps(): void {
     (Object.keys(this.deploymentSteps) as Array<keyof typeof this.deploymentSteps>).forEach(key => {
@@ -449,22 +480,31 @@ export class DeploymentComponent implements OnInit, OnDestroy {
     const message = error.message || error.toString();
 
     if (message.includes('insufficient funds')) {
-      return '账户余额不足，请获取测试币';
-    } else if (message.includes('invalid private key') || message.includes('private key')) {
-      return '私钥格式错误';
-    } else if (message.includes('network') || message.includes('connection')) {
-      return '网络连接失败';
-    } else if (message.includes('gas')) {
-      return 'Gas设置不足，请增加Gas限制';
-    } else if (message.includes('revert')) {
-      return '合约部署被回滚';
-    } else if (message.includes('nonce')) {
-      return 'nonce值错误，请稍后重试';
-    } else if (message.includes('rejected')) {
-      return '用户取消了交易';
+      return '账户余额不足,请先获取测试币';
+    }
+    if (message.includes('invalid address')) {
+      return '私钥对应的地址无效';
+    }
+    if (message.includes('nonce')) {
+      return 'Nonce错误,请稍后重试';
+    }
+    if (message.includes('gas')) {
+      return 'Gas设置错误: 请尝试增加Gas限制或提高Gas价格';
+    }
+    if (message.includes('network')) {
+      return '网络连接失败,请检查RPC地址';
+    }
+    if (message.includes('CORS') || message.includes('Access-Control-Allow-Origin')) {
+      return '网络代理配置错误,请检查后端服务';
+    }
+    if (message.includes('reverted') || message.includes('execution reverted')) {
+      return '合约执行被回退: 请检查合约逻辑是否正确';
+    }
+    if (message.includes('status') && message.includes('0')) {
+      return '交易失败: 合约部署执行被回退';
     }
 
-    return message.length > 100 ? message.substring(0, 100) + '...' : message;
+    return `部署失败: ${message}`;
   }
 
   /**
