@@ -1,0 +1,234 @@
+<mat-card class="deployment-card">
+  <mat-card-header>
+    <mat-card-title>
+      <div class="header-title">
+        <mat-icon class="header-icon">rocket_launch</mat-icon>
+        <h2>智能合约部署</h2>
+      </div>
+    </mat-card-title>
+    <mat-card-subtitle>
+      将已通过安全检测的智能合约部署到测试网络
+    </mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <!-- 部署状态提示 -->
+    <div class="status-container">
+      <div *ngIf="!canDeploy" class="deploy-status warning">
+        <mat-icon>warning</mat-icon>
+        <div class="status-content">
+          <span class="status-title">⚠️ 合约尚未就绪</span>
+          <span class="status-description">请先完成合约生成和安全检测流程</span>
+        </div>
+      </div>
+
+      <div *ngIf="canDeploy && !deployResult && !isDeploying" class="deploy-status success">
+        <mat-icon>check_circle</mat-icon>
+        <div class="status-content">
+          <span class="status-title">✅ 合约已就绪</span>
+          <span class="status-description">合约已通过安全检测，可以部署到测试网络</span>
+        </div>
+      </div>
+
+      <div *ngIf="isDeploying" class="deploy-status info">
+        <mat-spinner diameter="24"></mat-spinner>
+        <div class="status-content">
+          <span class="status-title">⏳ 正在部署合约</span>
+          <span class="status-description">请稍候，这可能需要几分钟时间...</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 部署配置表单 -->
+    <div *ngIf="canDeploy && !deployResult && !isDeploying" class="deploy-config">
+      <h3 class="section-title">部署配置</h3>
+
+      <div class="form-grid">
+        <div class="form-group">
+          <mat-form-field appearance="outline" class="w-full">
+            <mat-label>测试网络</mat-label>
+            <mat-select [(ngModel)]="deployConfig.testnet">
+              <mat-option value="sepolia">
+                <div class="network-option">
+                  <mat-icon class="network-icon">public</mat-icon>
+                  <span>Sepolia Testnet</span>
+                </div>
+              </mat-option>
+              <mat-option value="mumbai">
+                <div class="network-option">
+                  <mat-icon class="network-icon">polyline</mat-icon>
+                  <span>Polygon Mumbai</span>
+                </div>
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <small class="form-hint">当前选择：{{ getTestnetName() }}</small>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field appearance="outline" class="w-full">
+            <mat-label>部署者私钥</mat-label>
+            <input matInput
+                   type="password"
+                   [(ngModel)]="deployConfig.privateKey"
+                   placeholder="输入以0x开头的64位私钥"
+                   [disabled]="isDeploying">
+            <mat-icon matSuffix>vpn_key</mat-icon>
+          </mat-form-field>
+          <small class="warning-text">
+            <mat-icon>security</mat-icon>
+            ⚠️ 私钥仅用于本次部署，完成后会自动清除
+          </small>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field appearance="outline" class="w-full">
+            <mat-label>Gas限制</mat-label>
+            <input matInput
+                   type="number"
+                   [(ngModel)]="deployConfig.gasLimit"
+                   placeholder="输入Gas限制"
+                   [disabled]="isDeploying">
+            <mat-icon matSuffix>local_gas_station</mat-icon>
+          </mat-form-field>
+          <small class="form-hint">推荐值：3,000,000</small>
+        </div>
+      </div>
+
+      <!-- 网络信息卡片 -->
+      <mat-card class="network-info" appearance="outlined">
+        <mat-card-header>
+          <mat-card-title>
+            <mat-icon>info</mat-icon>
+            网络信息
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="network-details">
+            <div class="network-detail">
+              <span class="detail-label">网络名称：</span>
+              <span class="detail-value">{{ getTestnetName() }}</span>
+            </div>
+            <div class="network-detail">
+              <span class="detail-label">链ID：</span>
+              <span class="detail-value">{{ TESTNET_CONFIGS[deployConfig.testnet].chainId }}</span>
+            </div>
+            <div class="network-detail">
+              <span class="detail-label">RPC URL：</span>
+              <span class="detail-value url">{{ TESTNET_CONFIGS[deployConfig.testnet].rpcUrl }}</span>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <!-- 部署结果 -->
+    <div *ngIf="deployResult" class="deploy-result">
+      <div [class]="deployResult.success ? 'result-success' : 'result-error'">
+        <div class="result-header">
+          <mat-icon class="result-icon">
+            {{ deployResult.success ? 'check_circle' : 'error' }}
+          </mat-icon>
+          <h3>{{ deployResult.success ? '部署成功！' : '部署失败' }}</h3>
+        </div>
+
+        <div *ngIf="deployResult.success" class="result-content">
+          <div class="result-details">
+            <div class="detail-item">
+              <mat-icon>dns</mat-icon>
+              <div class="detail-info">
+                <span class="detail-label">测试网络</span>
+                <span class="detail-value">{{ getTestnetName() }}</span>
+              </div>
+            </div>
+
+            <div class="detail-item">
+              <mat-icon>fingerprint</mat-icon>
+              <div class="detail-info">
+                <span class="detail-label">合约地址</span>
+                <span class="detail-value address">{{ deployResult.contractAddress }}</span>
+              </div>
+            </div>
+
+            <div class="detail-item">
+              <mat-icon>receipt</mat-icon>
+              <div class="detail-info">
+                <span class="detail-label">交易哈希</span>
+                <span class="detail-value hash">{{ deployResult.transactionHash }}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="action-buttons">
+            <button mat-raised-button color="primary" (click)="copyContractAddress()">
+              <mat-icon>content_copy</mat-icon>
+              复制地址
+            </button>
+            <button mat-raised-button color="accent" (click)="viewOnExplorer()">
+              <mat-icon>open_in_new</mat-icon>
+              区块浏览器
+            </button>
+            <button *ngIf="deployResult.transactionHash" mat-stroked-button color="basic" (click)="viewTransaction()">
+              <mat-icon>receipt_long</mat-icon>
+              交易详情
+            </button>
+          </div>
+        </div>
+
+        <div *ngIf="!deployResult.success" class="result-content">
+          <div class="error-details">
+            <mat-icon class="error-icon">warning</mat-icon>
+            <div class="error-info">
+              <h4>错误信息</h4>
+              <p class="error-message">{{ deployResult.error }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 部署加载遮罩 -->
+    <div *ngIf="isDeploying" class="deploying-overlay">
+      <mat-spinner diameter="50"></mat-spinner>
+      <div class="deploying-text">合约部署中，请稍候...</div>
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions align="end">
+    <div class="action-buttons-container">
+      <button *ngIf="canDeploy && !deployResult && !isDeploying"
+              mat-raised-button
+              color="primary"
+              (click)="deployContract()"
+              [disabled]="!deployConfig.privateKey || isDeploying"
+              class="deploy-button">
+        <mat-icon>rocket_launch</mat-icon>
+        {{ deployStatusText }}
+      </button>
+
+      <button *ngIf="deployResult && !deployResult.success"
+              mat-raised-button
+              color="warn"
+              (click)="resetDeployment()">
+        <mat-icon>refresh</mat-icon>
+        重新部署
+      </button>
+
+      <button *ngIf="deployResult && deployResult.success"
+              mat-raised-button
+              color="accent"
+              (click)="resetDeployment()">
+        <mat-icon>add</mat-icon>
+        部署新合约
+      </button>
+
+      <button *ngIf="deployResult"
+              mat-stroked-button
+              color="basic"
+              (click)="resetDeployment()">
+        <mat-icon>clear</mat-icon>
+        清除结果
+      </button>
+    </div>
+  </mat-card-actions>
+</mat-card>

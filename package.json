@@ -24,9 +24,13 @@
     "@angular/platform-server": "^20.3.9",
     "@angular/router": "^20.3.9",
     "@angular/ssr": "^20.3.8",
+    "@types/web3": "^1.0.20",
+    "ethers": "^6.15.0",
     "express": "^4.18.2",
     "rxjs": "~7.8.0",
+    "solc": "^0.8.20",
     "tslib": "^2.3.0",
+    "web3": "^4.16.0",
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
@@ -35,7 +39,7 @@
     "@angular/compiler-cli": "^20.3.9",
     "@types/express": "^4.17.17",
     "@types/jasmine": "~5.1.0",
-    "@types/node": "^18.18.0",
+    "@types/node": "^18.19.130",
     "jasmine-core": "~5.6.0",
     "json-server": "^1.0.0-beta.3",
     "karma": "~6.4.0",

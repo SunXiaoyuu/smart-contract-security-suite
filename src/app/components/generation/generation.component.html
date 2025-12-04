@@ -1,35 +1,62 @@
-<mat-card>
+<mat-card class="generation-card">
   <h2>🧠 智能合约生成模块</h2>
+
   <mat-form-field appearance="outline" class="w-full">
-    <textarea 
-      matInput 
-      placeholder="请输入自然语言需求描述..." 
-      [(ngModel)]="description" 
+    <textarea
+      matInput
+      placeholder="请输入自然语言需求描述，例如：创建一个ERC20代币合约，名称为MyToken，符号为MTK，总量100万，精度18..."
+      [(ngModel)]="description"
       rows="6">
     </textarea>
   </mat-form-field>
 
   <div class="button-group">
-    <button 
-      mat-raised-button 
-      color="primary" 
-      (click)="generateContract()" 
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="generateContract()"
       [disabled]="isGenerating || !description.trim()">
-      {{ isGenerating ? '生成中...' : '生成合约' }}
-  </button>
+      {{ isGenerating ? '⏳ 生成中...' : '🚀 生成合约' }}
+    </button>
 
-  <button 
-      mat-raised-button 
-      color="accent" 
+    <button
+      mat-raised-button
+      color="accent"
       (click)="goToDetection()"
       [disabled]="!generatedCode.trim()">
-      下一步：漏洞检测 →
+      🔍 下一步：漏洞检测 →
     </button>
-    
-  </div>
-  
 
-  <pre *ngIf="generatedCode" style="white-space: pre-wrap; margin-top: 20px; background: #f5f5f5; padding: 15px; border-radius: 6px;">
-{{ generatedCode }}
-  </pre>
+    <!-- 新增操作按钮 -->
+    <button
+      mat-stroked-button
+      color="warn"
+      (click)="clearCode()"
+      [disabled]="!generatedCode.trim()">
+      🗑️ 清空代码
+    </button>
+
+    <button
+      mat-stroked-button
+      color="primary"
+      (click)="copyCode()"
+      [disabled]="!generatedCode.trim()">
+      📋 复制代码
+    </button>
+  </div>
+
+  <!-- 生成的代码显示区域 -->
+  <div *ngIf="generatedCode" class="code-container">
+    <div class="code-header">
+      <h3>📄 生成的智能合约代码</h3>
+      <span class="code-length">{{ generatedCode.length }} 字符</span>
+    </div>
+    <pre class="code-block">{{ generatedCode }}</pre>
+  </div>
+
+  <!-- 加载状态 -->
+  <div *ngIf="isGenerating" class="loading-container">
+    <mat-spinner diameter="40"></mat-spinner>
+    <p>AI正在生成合约代码，请稍候...</p>
+  </div>
 </mat-card>

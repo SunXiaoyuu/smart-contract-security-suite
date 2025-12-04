@@ -1,6 +1,12 @@
 <mat-card>
   <h2>🧩 智能合约漏洞检测模块</h2>
 
+  <!-- 部署就绪提示 -->
+  <div *ngIf="canDeploy" class="deploy-ready-banner">
+    <mat-icon>check_circle</mat-icon>
+    <span>✅ 合约已通过安全检测，可以部署到测试网</span>
+  </div>
+
   <mat-form-field appearance="outline" class="w-full">
     <textarea
       matInput
@@ -8,10 +14,10 @@
       [(ngModel)]="code"
       rows="6">
     </textarea>
-    <button 
-      mat-icon-button 
-      matSuffix 
-      (click)="copyCode()" 
+    <button
+      mat-icon-button
+      matSuffix
+      (click)="copyCode()"
       [disabled]="!code"
       matTooltip="复制代码">
       <mat-icon>content_copy</mat-icon>
@@ -22,32 +28,39 @@
     <button mat-raised-button color="accent" (click)="detect()" [disabled]="isDetecting || !code">
       {{ isDetecting ? '检测中...' : '开始检测' }}
     </button>
-    
-    <button 
-      mat-raised-button 
-      color="primary" 
-      (click)="generateReport()" 
+
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="generateReport()"
       [disabled]="!report || isGeneratingReport"
       style="margin-left: 10px;">
       {{ isGeneratingReport ? '生成中...' : '生成检测报告' }}
     </button>
 
-    <button 
-      mat-raised-button 
-      color="warn" 
-      (click)="goToRepair()" 
+    <button
+      mat-raised-button
+      color="warn"
+      (click)="goToRepair()"
       [disabled]="!report"
       style="margin-left: 10px;">
       下一步：漏洞修补 →
     </button>
 
-    <button 
-      mat-raised-button 
-      color="warn" 
-      (click)="goToTestchain()" 
-      [disabled]="!report"
-      style="margin-left: 10px;">
-      合约完成，前往测试网
+    <button *ngIf="report && report.vulnerabilities?.length === 0"
+            mat-raised-button
+            color="primary"
+            (click)="reDetect()"
+            style="margin-left: 10px;">
+      重新检测确认
+    </button>
+
+    <button mat-raised-button
+            color="success"
+            (click)="goToDeployment()"
+            [disabled]="!canDeploy"
+            style="margin-left: 10px;">
+      🚀 部署到测试网
     </button>
   </div>
 
@@ -57,7 +70,7 @@
     <mat-list>
       <mat-list-item *ngFor="let v of report.vulnerabilities">
         <div mat-line>
-          <b>{{ v.type }}</b> - 严重等级: 
+          <b>{{ v.type }}</b> - 严重等级:
           <span [style.color]="getSeverityColor(v.severity)">{{ v.severity }}</span>
         </div>
         <div mat-line style="font-size: 12px; color: #666;">
